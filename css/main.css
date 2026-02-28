@@ -37,6 +37,12 @@ h1, h2, h3, h4, h5, h6, a.pageLink {
   font-style: normal;
 }
 
+ol li::marker {
+  font-family: "Rubik Glitch", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
 #pageContainer {
   display: grid;
   gap: var(--gap);
@@ -110,15 +116,12 @@ article {
   border-width: 1px;
   padding: var(--padding-vert) var(--padding-horz);
   a {
-    font-weight: 900;
+    font-weight: 800;
     color: var(--link-text-color);
-    border: 1px solid;
     border-radius: 3px;
     display: inline-block;
     padding: 0 4px; 
-    &::after {
-      content: " \1F517";
-    }
+    text-decoration: underline;
     &:hover {
       color: var(--link-text-color-hover);
     }
@@ -126,9 +129,8 @@ article {
 }
 
 #disclaimer {
-  height: 80px;
-  background-color: rgb(68, 7, 65);
   grid-area: disc;
+  
 }
 
 ul#menuList {
@@ -189,7 +191,7 @@ ul#menuList {
     grid-template-areas:
     "menu head"
     "menu main"
-    "disc disc"
+    "menu disc"
     ;
     a.pageLink {
       text-align: right;
@@ -203,7 +205,7 @@ ul#menuList {
     grid-template-areas:
       "head head"
       "menu main"
-      "disc disc"
+      "menu disc"
     ;
   }
 }

@@ -10,12 +10,15 @@ class MenuSection extends HTMLElement {
   connectedCallback(){
     const pages = [
       { id: 'home', url: "/index.html", name: 'Home'},
-      { id: 'news', url: "/news.html", name: 'News'},
-      { id: 'band', url: "/news.html", name: 'Band'},
       { id: 'gigs', url: "/gigs.html", name: 'Gigs'},
+      { id: 'news', url: "/news.html", name: 'News'},
       { id: 'releases', url: "/releases.html", name: 'Releases'},
+      { id: 'band', url: "/band.html", name: 'Band'},
+      { id: 'press', url: "/press.html", name: 'Press'},
+      { id: 'gallery', url: "/gallery.html", name: 'Gallery'},
       { id: 'links', url: "/links.html", name: 'Links'},
     ];
+
 
     const pageStrings = [];
 
@@ -39,10 +42,3 @@ class MenuSection extends HTMLElement {
   }
 }
 customElements.define('menu-section', MenuSection);
-
-class DisclaimerSection extends HTMLElement {  
-  connectedCallback(){
-    this.innerHTML = `Dis gon' be disclaimer`
-  }
-}
-customElements.define('disclaimer-section', DisclaimerSection);
