@@ -15,10 +15,10 @@ class MainSection extends HTMLElement {
           console.log({element});
           switch (element.type) {
             case "span":
-              renderText(element.content, element.type, pElement, ["some", "classes", "to", "add"]);
+              renderText(element.text, element.type, pElement, ["some", "classes", "to", "add"]);
               break;
             case "h2":
-              renderText(element.content, element.type, pElement, ["some", "classes", "to", "add"]);
+              renderText(element.text, element.type, pElement, ["some", "classes", "to", "add"]);
               break;
             case "link":
               renderLink(element.title, element.url, pElement, ["some", "classes", "to", "add"]);

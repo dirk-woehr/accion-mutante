@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Article Editor</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    .article,
+    .paragraph {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    .paragraph-item {
+      margin: 5px 0;
+      padding: 5px;
+      background: #f5f5f5;
+    }
+
+    button {
+      margin: 3px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Article Editor</h1>
+
+  <button id="addArticle">+ Artikel</button>
+  <button id="loadJson">JSON laden</button>
+
+  <h3>JSON Input</h3>
+  <textarea id="jsonInput"></textarea>
+
+  <div id="articles"></div>
+
+  <h3>Output</h3>
+  <textarea id="output" readonly></textarea>
+
+  <script>
+    let articles = [];
+
+    const articlesContainer = document.getElementById("articles");
+    const output = document.getElementById("output");
+
+    function render() {
+      articlesContainer.innerHTML = "";
+      articles.forEach((article, articleIndex) => {
+        const articleDiv = document.createElement("div");
+        articleDiv.className = "article";
+
+        articleDiv.innerHTML = `
+          <button data-delete-article="${articleIndex}">🗑 Artikel löschen</button><br>
+          <strong>ID:</strong> ${article.id}<br>
+          Start: <input type="date" value="${article.startDate || ""}" data-article="${articleIndex}" data-field="startDate"><br>
+          Ende: <input type="date" value="${article.endDate || ""}" data-article="${articleIndex}" data-field="endDate"><br>
+          Titel: <input type="text" value="${article.title || ""}" data-article="${articleIndex}" data-field="title"><br>
+          Pinned: <input type="checkbox" 
+              ${article.pinned ? "checked" : ""} 
+              data-article="${articleIndex}" 
+              data-field="pinned"><br>
+          <button data-add-paragraph="${articleIndex}">+ Paragraph</button>
+          <div class="paragraphs"></div>
+        `;
+
+        const paragraphsContainer = articleDiv.querySelector(".paragraphs");
+
+        article.paragraphs.forEach((paragraph, paragraphIndex) => {
+          const pDiv = document.createElement("div");
+          pDiv.className = "paragraph";
+
+          pDiv.innerHTML = `
+            <button data-delete-paragraph="${articleIndex}-${paragraphIndex}">🗑 Paragraph löschen</button>
+            <button data-add-item="${articleIndex}-${paragraphIndex}-h2">+ H2</button>
+            <button data-add-item="${articleIndex}-${paragraphIndex}-span">+ Span</button>
+            <button data-add-item="${articleIndex}-${paragraphIndex}-link">+ Link</button>
+            <div class="items"></div>
+          `;
+
+          const itemsContainer = pDiv.querySelector(".items");
+
+          paragraph.forEach((item, itemIndex) => {
+            const itemDiv = document.createElement("div");
+            itemDiv.className = "paragraph-item";
+
+            if (item.type === "link") {
+
+              itemDiv.innerHTML = `
+                <strong>link</strong>
+                Titel: <input type="text" value="${item.title || ""}" 
+                  data-item="${articleIndex}-${paragraphIndex}-${itemIndex}-title">
+                URL: <input type="text" value="${item.url || ""}" 
+                  data-item="${articleIndex}-${paragraphIndex}-${itemIndex}-url">
+              `;
+
+            } else if (item.type === "span") {
+
+              itemDiv.innerHTML = `
+                <strong>span</strong><br>
+                <textarea 
+                  data-item="${articleIndex}-${paragraphIndex}-${itemIndex}-text"
+                  rows="4"
+                  style="width:100%;">${item.text || ""}</textarea>
+              `;
+
+            } else { // h2
+
+              itemDiv.innerHTML = `
+                <strong>h2</strong>
+                <input type="text" value="${item.text || ""}" 
+                  data-item="${articleIndex}-${paragraphIndex}-${itemIndex}-text">
+              `;
+
+            }
+
+            itemDiv.innerHTML += `
+              <button data-delete-item="${articleIndex}-${paragraphIndex}-${itemIndex}">
+                🗑
+              </button>
+            `;
+
+            itemsContainer.appendChild(itemDiv);
+          });
+
+          paragraphsContainer.appendChild(pDiv);
+        });
+
+        articlesContainer.appendChild(articleDiv);
+      });
+
+      output.value = JSON.stringify(articles, null, 2);
+    }
+
+    document.addEventListener("input", e => {
+      const articleIndex = e.target.dataset.article;
+      const field = e.target.dataset.field;
+
+      if (articleIndex !== undefined) {
+        if (field === "pinned") {
+          articles[articleIndex][field] = e.target.checked;
+        } else {
+          articles[articleIndex][field] = e.target.value;
+        }
+        render();
+        return;
+      }
+
+      const itemData = e.target.dataset.item;
+      if (itemData) {
+        const [a, p, i, key] = itemData.split("-");
+        articles[a].paragraphs[p][i][key] = e.target.value;
+        render();
+      }
+    });
+
+    document.addEventListener("click", e => {
+      if (e.target.dataset.deleteArticle !== undefined) {
+        articles.splice(e.target.dataset.deleteArticle, 1);
+        render();
+      }
+
+      if (e.target.dataset.addParagraph !== undefined) {
+        articles[e.target.dataset.addParagraph].paragraphs.push([]);
+        render();
+      }
+
+      if (e.target.dataset.deleteParagraph) {
+        const [a, p] = e.target.dataset.deleteParagraph.split("-");
+        articles[a].paragraphs.splice(p, 1);
+        render();
+      }
+
+      if (e.target.dataset.addItem) {
+        const [a, p, type] = e.target.dataset.addItem.split("-");
+        const paragraph = articles[a].paragraphs[p];
+
+        if (type === "link") {
+          paragraph.push({ type: "link", title: "", url: "" });
+        } else {
+          paragraph.push({ type, text: "" });
+        }
+
+        render();
+      }
+
+      if (e.target.dataset.deleteItem) {
+        const [a, p, i] = e.target.dataset.deleteItem.split("-");
+        articles[a].paragraphs[p].splice(i, 1);
+        render();
+      }
+    });
+
+    document.getElementById("addArticle").onclick = () => {
+      articles.push({
+        id: crypto.randomUUID(),
+        startDate: "",
+        endDate: "",
+        title: "",
+        pinned: false,
+        paragraphs: []
+
+      });
+      render();
+    };
+
+    document.getElementById("loadJson").onclick = () => {
+      try {
+        const parsed = JSON.parse(document.getElementById("jsonInput").value);
+        if (Array.isArray(parsed)) {
+          articles = parsed;
+          render();
+        } else {
+          alert("JSON muss ein Array sein.");
+        }
+      } catch {
+        alert("Ungültiges JSON.");
+      }
+    };
+
+    render();
+  </script>
+
+</body>
+
+</html>
