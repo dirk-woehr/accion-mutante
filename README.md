@@ -1,2 +1,4 @@
 # accion-mutante
-Accion Mutante HP
+## Accion Mutante Homepage
+
+* Static HTML, Vanilla JS & Web Components

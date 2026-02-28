@@ -145,7 +145,7 @@ ul#menuList {
   a {
     display: block;
     background-color: var(--page-link-background-color);
-    padding: var(--padding-vert) var(--padding-horz);
+    padding: var(--padding-vert) var(--padding-horz) var(--padding-vert) 60px;
     color: var(--main-text-color);
     text-align: center;
     font-size: 32px;
