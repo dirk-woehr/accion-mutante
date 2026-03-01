@@ -159,7 +159,7 @@ article {
   height: 100dvh;
   top: var(--gap);
   left: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 ul#menuList {
