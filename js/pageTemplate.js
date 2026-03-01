@@ -1,7 +1,7 @@
 class HeaderSection extends HTMLElement {
   
 connectedCallback(){
-  this.innerHTML = `<img src="/images/logo.png" alt="Band-Logo">`
+  this.innerHTML = `<img src="images/logo.png" alt="Band-Logo">`
   }
 }
 customElements.define('header-section', HeaderSection);
@@ -9,14 +9,14 @@ customElements.define('header-section', HeaderSection);
 class MenuSection extends HTMLElement {  
   connectedCallback(){
     const pages = [
-      { id: 'home', url: "/index.html", name: 'Home'},
-      { id: 'gigs', url: "/gigs.html", name: 'Gigs'},
-      { id: 'news', url: "/news.html", name: 'News'},
-      { id: 'releases', url: "/releases.html", name: 'Releases'},
-      { id: 'band', url: "/band.html", name: 'Band'},
-      { id: 'press', url: "/press.html", name: 'Press'},
-      { id: 'gallery', url: "/gallery.html", name: 'Gallery'},
-      { id: 'links', url: "/links.html", name: 'Links'},
+      { id: 'home', url: "index.html", name: 'Home'},
+      { id: 'gigs', url: "gigs.html", name: 'Gigs'},
+      { id: 'news', url: "news.html", name: 'News'},
+      { id: 'releases', url: "releases.html", name: 'Releases'},
+      { id: 'band', url: "band.html", name: 'Band'},
+      { id: 'press', url: "press.html", name: 'Press'},
+      { id: 'gallery', url: "gallery.html", name: 'Gallery'},
+      { id: 'links', url: "links.html", name: 'Links'},
     ];
 
 

@@ -107,7 +107,7 @@ a {
   flex-direction: column;
   gap: var(--gap);
   &:empty {
-    background-image: url("/images/under_destruction.jpg");
+    background-image: url("../images/under_destruction.jpg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
