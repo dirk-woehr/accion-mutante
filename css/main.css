@@ -7,31 +7,47 @@
   --link-text-color-hover: rgba(var(--main-text-color-rgb), 0.75);
 
   --page-link-background-color-rgb: 105, 27, 27;
-  --page-link-background-color-hover: rgb(var(--page-link-background-color-rgb));
-  --page-link-background-color: rgba(var(--page-link-background-color-rgb), 0.75);
-  --page-link-background-color-disabled: rgba(var(--page-link-background-color-rgb), 0.5);
+  --page-link-background-color-hover: rgb(
+    var(--page-link-background-color-rgb)
+  );
+  --page-link-background-color: rgba(
+    var(--page-link-background-color-rgb),
+    0.75
+  );
+  --page-link-background-color-disabled: rgba(
+    var(--page-link-background-color-rgb),
+    0.5
+  );
 
   --article-background-color: rgba(var(--page-link-background-color-rgb), 0.25);
   --article-text-color: rgba(var(--main-text-color-rgb), 0.6);
   --article-border-color: rgba(var(--main-text-color-rgb), 0.5);
 
   --gap: 10px;
-  --padding-horz: calc( var(--gap) * 2);
-  --padding-vert: calc( var(--gap));
+  --padding-horz: calc(var(--gap) * 2);
+  --padding-vert: calc(var(--gap));
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   background-color: var(--main-backgrond-color);
-  color: var(--main-text-color);font-family: "Roboto Flex", sans-serif;
+  color: var(--main-text-color);
+  font-family: "Roboto Flex", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4, h5, h6, a.pageLink {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a.pageLink {
   font-family: "Rubik Glitch", system-ui;
   font-weight: 400;
   font-style: normal;
@@ -51,8 +67,7 @@ ol li::marker {
     "head"
     "menu"
     "main"
-    "disc"
-  ;
+    "disc";
 }
 
 #menu {
@@ -76,7 +91,7 @@ a#scrollToMenu {
   border-radius: var(--gap);
   color: var(--main-text-color);
   padding: var(--gap);
-  filter: drop-shadow(8px 8px 8px #000000AA);
+  filter: drop-shadow(8px 8px 8px #000000aa);
   opacity: 0.75;
   &.show {
     display: block;
@@ -87,7 +102,7 @@ a#scrollToMenu {
 }
 
 a.disabled {
-  pointer-events:none;  
+  pointer-events: none;
 }
 
 a {
@@ -127,7 +142,7 @@ article {
     color: var(--link-text-color);
     border-radius: 3px;
     display: inline-block;
-    padding: 0 4px; 
+    padding: 0 4px;
     text-decoration: underline;
     &:hover {
       color: var(--link-text-color-hover);
@@ -137,7 +152,14 @@ article {
 
 #disclaimer {
   grid-area: disc;
-  
+}
+
+#menuListContainer {
+  position: sticky;
+  height: 100dvh;
+  top: var(--gap);
+  left: 0;
+  overflow-y: scroll;
 }
 
 ul#menuList {
@@ -147,10 +169,7 @@ ul#menuList {
   flex-direction: column;
   margin: 0;
   gap: var(--gap);
-  align-self: start;  
-  position: sticky;
-  top: var(--gap);
-  left: 0;
+  align-self: start;
   a {
     display: block;
     background-color: var(--page-link-background-color);
@@ -158,19 +177,17 @@ ul#menuList {
     color: var(--main-text-color);
     text-align: center;
     font-size: 32px;
-    text-shadow: 8px 8px 8px #000000AA;
+    text-shadow: 8px 8px 8px #000000aa;
     border-radius: var(--gap);
     &:hover {
       background-color: var(--page-link-background-color-hover);
     }
     &.disabled {
-      pointer-events:none; 
+      pointer-events: none;
       background-color: var(--page-link-background-color-disabled);
     }
   }
 }
-
-
 
 @media (max-width: 767px) {
   #pageContainer {
@@ -197,12 +214,11 @@ ul#menuList {
   }
   #pageContainer {
     grid-template-columns: auto 1fr;
-    margin:auto;
+    margin: auto;
     grid-template-areas:
-    "menu head"
-    "menu main"
-    "menu disc"
-    ;
+      "menu head"
+      "menu main"
+      "menu disc";
     a.pageLink {
       text-align: right;
     }
@@ -215,8 +231,6 @@ ul#menuList {
     grid-template-areas:
       "head head"
       "menu main"
-      "menu disc"
-    ;
+      "menu disc";
   }
 }
-
