@@ -177,13 +177,16 @@ ul#menuList {
     padding: 0 var(--padding-vert);
   }
 
-  #menuList {
+  ul#menuList {
     height: 0;
     overflow: hidden;
     transition: height 616ms ease;
     interpolate-size: allow-keywords;
     &.show {
       height: auto;
+    }
+    a {
+      padding: var(--padding-vert) var(--padding-horz);
     }
   }
 }
