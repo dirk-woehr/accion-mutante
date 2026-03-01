@@ -156,7 +156,7 @@ article {
 
 #menuListContainer {
   position: sticky;
-  height: 100dvh;
+  max-height: 100dvh;
   top: var(--gap);
   left: 0;
   overflow-y: auto;
