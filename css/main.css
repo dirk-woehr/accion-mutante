@@ -106,6 +106,13 @@ a {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+  &:empty {
+    background-image: url("/images/under_destruction.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
 }
 
 article {
