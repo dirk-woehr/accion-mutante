@@ -278,6 +278,14 @@ ul#menuList {
       "image info bands"
       "description description description";
   }
+  .gig {
+    grid-template-columns: 2fr 3fr 2fr;
+    grid-template-areas: 
+      "title title title"
+      "image info bands"
+      "image info bands"
+      "description description description";
+  }
 }
 
 @media (min-width: 1280px) {
@@ -287,6 +295,14 @@ ul#menuList {
       "head head"
       "menu main"
       "menu disc";
+  }
+  .gig {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+      "image title title"
+      "image info bands"
+      "image info bands"
+      "image description description";
   }
   .gig {
     grid-template-columns: 1fr 1fr 1fr;
