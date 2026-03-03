@@ -130,15 +130,6 @@ a {
   }
 }
 
-article, .gig {
-  background-color: var(--article-background-color);
-  border-color: var(--article-text-color);
-  border-radius: var(--padding-vert);
-  border-style: solid;
-  border-width: 1px;
-  padding: var(--padding-vert) var(--padding-horz);
-}
-
 article {
   background-color: var(--article-background-color);
   border-color: var(--article-text-color);
@@ -198,44 +189,6 @@ ul#menuList {
   }
 }
 
-.gig {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gap);
-  grid-template-areas: 
-    "title"
-    "image"
-    "info"
-    "bands"
-    "description";
-  .gigTitle {
-    grid-area: title;
-    margin: 0;
-  }
-  .gigImage { 
-    grid-area: image;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: 0px 0px;
-    }
-  }
-  .gigInfo { 
-    grid-area: info;
-  }
-  .gigBands { grid-area: bands;
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      font-family: "Rubik Glitch", system-ui;
-      font-weight: 400;
-      font-style: normal;
-    } }
-  .gigDescription { grid-area: description }
-}
-
 @media (max-width: 767px) {
   #pageContainer {
     padding: 0 var(--padding-vert);
@@ -270,22 +223,6 @@ ul#menuList {
       text-align: right;
     }
   }
-  .gig {
-    grid-template-columns: 2fr 3fr 2fr;
-    grid-template-areas: 
-      "title title title"
-      "image info bands"
-      "image info bands"
-      "description description description";
-  }
-  .gig {
-    grid-template-columns: 2fr 3fr 2fr;
-    grid-template-areas: 
-      "title title title"
-      "image info bands"
-      "image info bands"
-      "description description description";
-  }
 }
 
 @media (min-width: 1280px) {
@@ -295,21 +232,5 @@ ul#menuList {
       "head head"
       "menu main"
       "menu disc";
-  }
-  .gig {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 
-      "image title title"
-      "image info bands"
-      "image info bands"
-      "image description description";
-  }
-  .gig {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 
-      "image title title"
-      "image info bands"
-      "image info bands"
-      "image description description";
   }
 }
