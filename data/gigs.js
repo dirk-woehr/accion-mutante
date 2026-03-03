@@ -1,7 +1,7 @@
 export const gigs = [
   {
     title: "Merry Crustmess 2025",
-    image: "../images/crustmess_2025.jpg",
+    image: "./images/crustmess_2025.jpg",
     date: "2025-12-23",
     timeOpen: "19:00",
     timeStart: "20:00",
@@ -9,7 +9,7 @@ export const gigs = [
       name: "Schwarzer Keiler",
       url: "https://der-schwarze-keiler.de/",
       city: "Stuttgart",
-      country: "Germany"
+      country: "Germany",
     },
     description:
       "An energetic evening featuring some of the most exciting upcoming indie bands. Expect atmospheric sounds, driving guitars and a vibrant crowd.",
@@ -17,8 +17,8 @@ export const gigs = [
       { name: "Accion Mutante", url: "#" },
       { name: "Cluster Bomb Unit" },
       { name: "Arsen" },
-      { name: "Cop An Attitude" }
-    ]
+      { name: "Cop An Attitude" },
+    ],
   },
   {
     title: "Summer Indie Night 2026",
@@ -30,15 +30,15 @@ export const gigs = [
       name: "Kesselhaus",
       url: "https://www.kesselhaus-berlin.de",
       city: "Berlin",
-      country: "Germany"
+      country: "Germany",
     },
     description:
       "An energetic evening featuring some of the most exciting upcoming indie bands. Expect atmospheric sounds, driving guitars and a vibrant crowd.",
     bands: [
       { name: "The Paper Skies", url: "https://example.com/thepaperskies" },
       { name: "Neon Valley" },
-      { name: "Midnight Echo" }
-    ]
+      { name: "Midnight Echo" },
+    ],
   },
   {
     title: "Autumn Metal Fest",
@@ -50,15 +50,15 @@ export const gigs = [
       name: "Live Music Hall",
       url: "https://www.livemusichall.de",
       city: "Cologne",
-      country: "Germany"
+      country: "Germany",
     },
     description:
       "A powerful night of modern and classic metal. Heavy riffs, intense stage performance and an unforgettable atmosphere.",
     bands: [
       { name: "Iron Pulse" },
       { name: "Steel Horizon" },
-      { name: "Crimson Dominion" }
-    ]
+      { name: "Crimson Dominion" },
+    ],
   },
   {
     title: "Acoustic Winter Sessions",
@@ -69,14 +69,14 @@ export const gigs = [
     location: {
       name: "Blue Note Café",
       city: "Hamburg",
-      country: "Germany"
+      country: "Germany",
     },
     description:
       "An intimate acoustic evening with singer-songwriters performing stripped-down versions of their songs in a cozy atmosphere.",
     bands: [
       { name: "Lena Rivers" },
-      { name: "Jonah Miles", url: "https://example.com/jonahmiles" }
-    ]
+      { name: "Jonah Miles", url: "https://example.com/jonahmiles" },
+    ],
   },
   {
     title: "Spring Alternative Showcase",
@@ -88,16 +88,18 @@ export const gigs = [
       name: "Werk 2",
       url: "https://www.werk-2.de",
       city: "Leipzig",
-      country: "Germany"
+      country: "Germany",
     },
     description:
       "A showcase of emerging alternative rock bands. Expect dynamic performances and fresh sounds from the underground scene.",
     bands: [
       { name: "Static Bloom" },
       { name: "Silver Lines" },
-      { name: "Echo Harbor" }
-    ]
-  }
+      { name: "Echo Harbor" },
+    ],
+  },
 ];
 
-export const upcomingGigs = gigs.filter(gig => new Date(gig.date) >= new Date());
+export const upcomingGigs = gigs.filter(
+  (gig) => new Date(gig.date) >= new Date(),
+);
