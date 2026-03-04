@@ -2,7 +2,7 @@ const articles = [
   {
     "id": "3f1f9b8e-6c4a-4a1e-9f6e-2c0c6f9d1b2a",
     "startDate": "2026-02-23",
-    "endDate": "2026-03-01",
+    "endDate": "2026-03-06",
     "title": "Test Article",
     "pinned": false,
     "paragraphs": [
@@ -59,5 +59,7 @@ export const manyArticles = [
   ...articles,
   ...articles,
   {...articles[0], pinned: true, title: "A Pinned Article"},
+  {...articles[0], pinned: true, title: "Another, Later Pinned Article", startDate: "2026-03-01"},
+  {...articles[0], pinned: true, title: "An Expired Pinned Article", endDate: "2026-03-03"},
 ];
 
