@@ -6,8 +6,9 @@
   --link-text-color: rgb(var(--main-text-color-rgb));
   --link-text-color-hover: rgba(var(--main-text-color-rgb), 0.75);
 
+  /* keep for easy switch of RGB values */
+  --background-color-rgb: rgb(105, 27, 27);
   --background-color-rgb: 105, 27, 27;
-  --background-color-hsl: 0, 59%, 26%;
   --page-link-background-color-hover: rgb(var(--background-color-rgb));
   --page-link-background-color: rgba(var(--background-color-rgb), 0.75);
   --page-link-background-color-disabled: rgba(var(--background-color-rgb), 0.4);
