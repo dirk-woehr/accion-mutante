@@ -1,9 +1,6 @@
 .gig {
   background-color: var(--article-background-color);
-  border-color: var(--article-text-color);
   border-radius: var(--gap);
-  border-style: solid;
-  border-width: 1px;
   padding: var(--padding-horz) var(--padding-horz);
   display: grid;
   grid-template-columns: 1fr;

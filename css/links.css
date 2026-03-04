@@ -1,13 +1,10 @@
 #linkGrid {
   background-color: var(--article-background-color);
-  border-color: var(--article-text-color);
   border-radius: var(--padding-vert);
-  border-style: solid;
-  border-width: 1px;
   padding: var(--padding-horz) var(--padding-horz);
 
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
     "bands"
     "labels"
     "misc";
@@ -64,8 +61,7 @@
 @media (min-width: 1280px) {
   #linkGrid {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas:
-      "bands labels misc";
+    grid-template-areas: "bands labels misc";
   }
 }
 

@@ -6,24 +6,23 @@
   --link-text-color: rgb(var(--main-text-color-rgb));
   --link-text-color-hover: rgba(var(--main-text-color-rgb), 0.75);
 
-  --page-link-background-color-rgb: 105, 27, 27;
-  --page-link-background-color-hover: rgb(
-    var(--page-link-background-color-rgb)
-  );
-  --page-link-background-color: rgba(
-    var(--page-link-background-color-rgb),
-    0.75
-  );
-  --page-link-background-color-disabled: rgba(
-    var(--page-link-background-color-rgb),
-    0.5
-  );
+  --background-color-rgb: 105, 27, 27;
+  --background-color-hsl: 0, 59%, 26%;
+  --page-link-background-color-hover: rgb(var(--background-color-rgb));
+  --page-link-background-color: rgba(var(--background-color-rgb), 0.75);
+  --page-link-background-color-disabled: rgba(var(--background-color-rgb), 0.4);
 
-  --article-background-color: rgba(var(--page-link-background-color-rgb), 0.25);
+  --article-background-color: rgba(var(--background-color-rgb), 0.4);
   --article-text-color: rgba(var(--main-text-color-rgb), 0.6);
   --article-border-color: rgba(var(--main-text-color-rgb), 0.5);
 
-  --base-gap: 0.5em;
+  --sticky-header-background-color: color-mix(
+    in srgb,
+    rgb(var(--background-color-rgb)),
+    black 33%
+  );
+
+  --base-gap: 0.5rem;
   --gap: calc(var(--base-gap) * 2);
   --padding-horz: calc(var(--base-gap) * 2);
   --padding-vert: calc(var(--base-gap));
@@ -128,27 +127,23 @@ a {
     font-size: clamp(1.5rem, 1rem + 2.5vw, 3rem);
     margin: 0;
 
-    background-color: rgb(51, 19, 19);
-    border-color: var(--article-text-color);
+    background-color: var(--sticky-header-background-color);
+    box-shadow: 10px 10px 50px black;
     border-radius: var(--padding-vert);
-    border-style: solid;
-    border-width: 1px;
-    padding: var(--padding-horz) var(--padding-horz);
+    padding: var(--base-gap);
+    padding-bottom: calc(var(--base-gap) * 1.4);
 
     text-shadow: 8px 8px 8px #000000aa;
     text-align: center;
 
     position: sticky;
-    top: var(--gap);
+    top: var(--base-gap);
   }
 }
 
 article {
   background-color: var(--article-background-color);
-  border-color: var(--article-text-color);
   border-radius: var(--gap);
-  border-style: solid;
-  border-width: 1px;
   padding: var(--padding-vert) var(--padding-horz);
   a {
     font-weight: 800;
@@ -167,7 +162,7 @@ article {
 #menuListContainer {
   position: sticky;
   max-height: 100dvh;
-  top: var(--gap);
+  top: var(--base-gap);
   left: 0;
   overflow-y: auto;
   scrollbar-width: none;
