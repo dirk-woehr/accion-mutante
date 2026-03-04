@@ -4,14 +4,23 @@ class MainSection extends HTMLElement {
   
  connectedCallback(){
     this.innerHTML = "";
-    const linkSections = Objeckt.keys(links);
+    const linkGrid = document.createElement("div");
+    linkGrid.setAttribute("id", "linkGrid");
+    this.appendChild(linkGrid); 
+    const linkLists = Object.keys(links);
 
-    linkSections.forEach(linkSectionKey => {
-      const sectionLinks = links[linkSectionKey];
-      const linkSection = document.createElement("section");
-      linkSection.classList.add(linkSectionKey);
+    linkLists.forEach(linkListKey => {
+      const sectionLinks = links[linkListKey];
+      const linkListContainer = document.createElement("div");
+      linkListContainer.classList.add(linkListKey);
 
+      const linkSectionTitle = document.createElement("h2");
+      linkSectionTitle.textContent = linkListKey;
+      linkListContainer.appendChild(linkSectionTitle);
+
+      const linkList = document.createElement("ul");
       sectionLinks.forEach(link  => {
+        const listItem = document.createElement("li");
         const aElement = document.createElement("a");
         aElement.setAttribute("href", link.url);
         if(link.image) {
@@ -20,11 +29,13 @@ class MainSection extends HTMLElement {
           imageElement.setAttribute("alt", link.name);
           aElement.appendChild(imageElement);
         } else {
-          aElement.textContent = link.title;
+          aElement.textContent = link.name;
         }
-        linkSection.appendChild(aElement);        
+        listItem.appendChild(aElement);
+        linkList.appendChild(listItem);        
       });
-      this.appendChild(linkSection);
+      linkListContainer.appendChild(linkList);
+      linkGrid.appendChild(linkListContainer);
     })
   }
 }
