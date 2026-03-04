@@ -63,6 +63,6 @@ const miscLinks = [
 
 export const links = {
   bands: [...bandLinks, ...bandLinks, ...bandLinks, ...bandLinks],
-  labels: [ ...labelLinks, ...labelLinks, ...labelLinks],
-  misc: [...miscLinks, ...miscLinks, ...miscLinks]
+  labels: [ ...labelLinks, ...labelLinks],
+  misc: [...miscLinks, ...miscLinks]
 };

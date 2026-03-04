@@ -1,4 +1,4 @@
-import { gigs } from "../data/gigs.js";
+import { gigs } from "../data/gig_data.js";
 
 class MainSection extends HTMLElement {
   

@@ -1,4 +1,4 @@
-import { manyArticles } from "../data/news.js";
+import { manyArticles } from "../data/news_data.js";
 import { renderText, renderLink } from "./global.js";
 
 class MainSection extends HTMLElement {

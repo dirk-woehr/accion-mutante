@@ -1,4 +1,4 @@
-import { links } from "../data/links.js";
+import { links } from "../data/link_data.js";
 
 class MainSection extends HTMLElement {
   
