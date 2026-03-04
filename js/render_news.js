@@ -6,7 +6,9 @@ export const renderNews = (pinned, parent) => {
   const baseSelection = manyArticles.filter((article) => {
     const inSelection = article.pinned === pinned;
     const articleLaunched = new Date(article.startDate) <= currentDate;
-    const articleExpired = article.endDate ? new Date(article.endDate) < currentDate : false;
+    const articleExpired = article.endDate
+      ? new Date(article.endDate) < currentDate
+      : false;
 
     return inSelection && articleLaunched && !articleExpired;
   });
@@ -17,34 +19,58 @@ export const renderNews = (pinned, parent) => {
     return dateB - dateA;
   });
 
-  if(baseSelection.length && pinned) {
+  const newsSection = document.createElement("section");
+
+  if (baseSelection.length && pinned) {
     const headerNews = document.createElement("h1");
     headerNews.textContent = "News";
-    parent.appendChild(headerNews);
+    newsSection.appendChild(headerNews);
   }
 
-  baseSelection.forEach(article => {
+  baseSelection.forEach((article) => {
     const articleElement = document.createElement("article");
-    renderText(article.title, "h1", articleElement, ["some", "classes", "to", "add"]);
-    article.paragraphs.forEach(paragraph => {
+    renderText(article.title, "h1", articleElement, [
+      "some",
+      "classes",
+      "to",
+      "add",
+    ]);
+    article.paragraphs.forEach((paragraph) => {
       const pElement = document.createElement("p");
-      paragraph.forEach(element => {
+      paragraph.forEach((element) => {
         switch (element.type) {
           case "span":
-            renderText(element.text, element.type, pElement, ["some", "classes", "to", "add"]);
+            renderText(element.text, element.type, pElement, [
+              "some",
+              "classes",
+              "to",
+              "add",
+            ]);
             break;
           case "h2":
-            renderText(element.text, element.type, pElement, ["some", "classes", "to", "add"]);
+            renderText(element.text, element.type, pElement, [
+              "some",
+              "classes",
+              "to",
+              "add",
+            ]);
             break;
           case "link":
-            renderLink(element.title, element.url, pElement, ["some", "classes", "to", "add"]);
-            break;                
+            renderLink(element.title, element.url, pElement, [
+              "some",
+              "classes",
+              "to",
+              "add",
+            ]);
+            break;
           default:
             break;
-          }
+        }
       });
       articleElement.appendChild(pElement);
     });
-    parent.appendChild(articleElement);
+    newsSection.appendChild(articleElement);
   });
-}
+
+  parent.appendChild(newsSection);
+};

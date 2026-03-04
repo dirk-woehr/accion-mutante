@@ -1,15 +1,15 @@
 import { gigs } from "../data/gig_data.js";
 
-const sortGigsDesc = ((a, b) => {
+const sortGigsDesc = (a, b) => {
   const dateA = new Date(a.date);
   const dateB = new Date(b.date);
   return dateB - dateA;
-});
-const sortGigsAsc = ((a, b) => {
+};
+const sortGigsAsc = (a, b) => {
   const dateA = new Date(a.date);
   const dateB = new Date(b.date);
   return dateA - dateB;
-});
+};
 
 export const renderGigs = (parent) => {
   const body = document.querySelector("body");
@@ -22,7 +22,7 @@ export const renderGigs = (parent) => {
 
   baseSelection.sort(sortGigsAsc);
   const selections = [baseSelection];
-  
+
   if (showAll) {
     const extendedSelection = gigs.filter((gig) => {
       const gigDate = new Date(gig.date);
@@ -33,20 +33,21 @@ export const renderGigs = (parent) => {
   }
 
   selections.forEach((selection, index) => {
-    if(selection.length !== 0) {
+    const gigsSection = document.createElement("section");
+    if (selection.length !== 0) {
       if (index === 0) {
         const upcomingGigsHeader = document.createElement("h1");
         upcomingGigsHeader.textContent = "Upcoming Gigs";
-        parent.appendChild(upcomingGigsHeader);
+        gigsSection.appendChild(upcomingGigsHeader);
       } else {
         const pastGigsHeader = document.createElement("h1");
         pastGigsHeader.textContent = "Past Gigs";
-        parent.appendChild(pastGigsHeader);
+        gigsSection.appendChild(pastGigsHeader);
       }
     }
-    selection.forEach(gig => {
+    selection.forEach((gig) => {
       const bandList = [];
-      gig.bands.forEach(band => {
+      gig.bands.forEach((band) => {
         bandList.push(band.name);
       });
       const currentGig = document.createElement("div");
@@ -66,11 +67,13 @@ export const renderGigs = (parent) => {
         <div class="gigBands">
           <h2>Bands</h2>
           <ul>
-            ${bandList.map(band => `<li>${band}</li>`).join('')}
+            ${bandList.map((band) => `<li>${band}</li>`).join("")}
           </ul>
         </div>
         <p class="gigDescription">${gig.description}</p>`;
-        parent.appendChild(currentGig);
-      });
+      gigsSection.appendChild(currentGig);
+    });
+
+    parent.appendChild(gigsSection);
   });
-}
+};
