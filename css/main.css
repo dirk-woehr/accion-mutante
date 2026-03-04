@@ -47,12 +47,7 @@ h3,
 h4,
 h5,
 h6,
-a.pageLink {
-  font-family: "Rubik Glitch", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
-
+a.pageLink,
 ol li::marker {
   font-family: "Rubik Glitch", system-ui;
   font-weight: 400;
@@ -129,7 +124,7 @@ a {
     aspect-ratio: 16 / 9;
   }
   & > h1 {
-    font-size: 3em;
+    font-size: clamp(1.5rem, 1rem + 2.5vw, 3rem);
     margin: 0;
 
     background-color: rgb(51, 19, 19);
@@ -177,6 +172,7 @@ article {
   top: var(--gap);
   left: 0;
   overflow-y: auto;
+  scrollbar-width: none;
 }
 
 ul#menuList {

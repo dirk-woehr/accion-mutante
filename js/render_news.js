@@ -1,7 +1,7 @@
 import { renderText, renderLink } from "./global.js";
 import { manyArticles } from "../data/news_data.js";
 
-export const renderNews = (pinned, sortDirection, parent) => {
+export const renderNews = (pinned, parent) => {
   const currentDate = new Date();
   const baseSelection = manyArticles.filter((article) => {
     const inSelection = article.pinned === pinned;
@@ -14,14 +14,10 @@ export const renderNews = (pinned, sortDirection, parent) => {
   baseSelection.sort((a, b) => {
     const dateA = new Date(a.startDate);
     const dateB = new Date(b.startDate);
-    if (sortDirection === "asc") {
-      return dateA - dateB;
-    } else {
-      return dateB - dateA;
-    }
+    return dateB - dateA;
   });
 
-  if(baseSelection.length) {
+  if(baseSelection.length && pinned) {
     const headerNews = document.createElement("h1");
     headerNews.textContent = "News";
     parent.appendChild(headerNews);

@@ -5,8 +5,8 @@ class MainSection extends HTMLElement {
  connectedCallback(){
     this.innerHTML = "";
 
-    renderNews(true, "desc", this, true);
-    renderNews(false, "desc", this, false);
+    renderNews(true, this);
+    renderNews(false, this);
   }
 }
 customElements.define('main-section', MainSection);
