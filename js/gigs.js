@@ -1,13 +1,19 @@
 import { gigs } from "../data/gigs.js";
 
+const dateOptions = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
+
 class MainSection extends HTMLElement {
-  
- connectedCallback(){
+  connectedCallback() {
     this.innerHTML = "";
 
-     gigs.forEach(gig  => {
+    gigs.forEach((gig) => {
       const bandList = [];
-      gig.bands.forEach(band => {
+      gig.bands.forEach((band) => {
         bandList.push(band.name);
       });
       const currentGig = document.createElement("div");
@@ -17,7 +23,7 @@ class MainSection extends HTMLElement {
           <img src="${gig.image}" alt="${gig.title}">
         </div>
         <div class="gigInfo">
-          <h3 class="gigDate">${gig.date}</h3>
+          <h3 class="gigDate">${new Date(gig.date).toLocaleDateString("de-DE", dateOptions)}</h3>
           <div class="gigLocation">
             <h3>${gig.location.name}<br>${gig.location.city} / ${gig.location.country}</h3>
           </div>
@@ -27,7 +33,7 @@ class MainSection extends HTMLElement {
         <div class="gigBands">
           <h2>Bands</h2>
           <ul>
-            ${bandList.map(band => `<li>${band}</li>`).join('')}
+            ${bandList.map((band) => `<li>${band}</li>`).join("")}
           </ul>
         </div>
         <p class="gigDescription">${gig.description}</p>`;
@@ -35,4 +41,4 @@ class MainSection extends HTMLElement {
     });
   }
 }
-customElements.define('main-section', MainSection);
+customElements.define("main-section", MainSection);

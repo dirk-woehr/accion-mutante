@@ -23,9 +23,10 @@
   --article-text-color: rgba(var(--main-text-color-rgb), 0.6);
   --article-border-color: rgba(var(--main-text-color-rgb), 0.5);
 
-  --gap: 10px;
-  --padding-horz: calc(var(--gap) * 2);
-  --padding-vert: calc(var(--gap));
+  --base-gap: 0.5em;
+  --gap: calc(var(--base-gap) * 2);
+  --padding-horz: calc(var(--base-gap) * 2);
+  --padding-vert: calc(var(--base-gap));
 }
 
 body,
@@ -88,7 +89,7 @@ a#scrollToMenu {
   right: var(--padding-horz);
   background-color: black;
   border: 1px solid var(--main-text-color);
-  border-radius: var(--gap);
+  border-radius: var(--base-gap);
   color: var(--main-text-color);
   padding: var(--gap);
   filter: drop-shadow(8px 8px 8px #000000aa);
@@ -133,16 +134,13 @@ a {
 article {
   background-color: var(--article-background-color);
   border-color: var(--article-text-color);
-  border-radius: var(--padding-vert);
+  border-radius: var(--gap);
   border-style: solid;
   border-width: 1px;
   padding: var(--padding-vert) var(--padding-horz);
   a {
     font-weight: 800;
     color: var(--link-text-color);
-    border-radius: 3px;
-    display: inline-block;
-    padding: 0 4px;
     text-decoration: underline;
     &:hover {
       color: var(--link-text-color-hover);
@@ -173,12 +171,13 @@ ul#menuList {
   a {
     display: block;
     background-color: var(--page-link-background-color);
-    padding: var(--padding-vert) var(--padding-horz) var(--padding-vert) 60px;
+    padding: calc(var(--padding-vert) - 2px) var(--padding-horz)
+      var(--padding-vert) 60px;
     color: var(--main-text-color);
     text-align: center;
     font-size: 32px;
     text-shadow: 8px 8px 8px #000000aa;
-    border-radius: var(--gap);
+    border-radius: var(--base-gap);
     &:hover {
       background-color: var(--page-link-background-color-hover);
     }
