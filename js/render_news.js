@@ -1,33 +1,49 @@
 import { renderText, renderLink } from "./global.js";
 import { manyArticles } from "../data/news_data.js";
 
-export const renderNews = (pinned, parent) => {
+const sort = (a, b) => {
+  const dateA = new Date(a.startDate);
+  const dateB = new Date(b.startDate);
+  return dateB - dateA;
+}
+
+export const renderNews = (showAll, parent) => {
+  let pinned = true;  
   const currentDate = new Date();
-  const baseSelection = manyArticles.filter((article) => {
+
+  const filterPinnedNews = (article) => {
     const inSelection = article.pinned === pinned;
+    if(!inSelection) return false;
+  
     const articleLaunched = new Date(article.startDate) <= currentDate;
+    if(!articleLaunched) return false;
+  
     const articleExpired = article.endDate
       ? new Date(article.endDate) < currentDate
       : false;
+  
+    return !articleExpired; 
+  };
 
-    return inSelection && articleLaunched && !articleExpired;
-  });
+  const baseSelection = manyArticles.filter(filterPinnedNews);
+  baseSelection.sort(sort);
 
-  baseSelection.sort((a, b) => {
-    const dateA = new Date(a.startDate);
-    const dateB = new Date(b.startDate);
-    return dateB - dateA;
-  });
+  const allNews = [...baseSelection];
+
+  if(showAll) {
+    pinned = false;
+    const extendedSelection = manyArticles.filter(filterPinnedNews);
+    extendedSelection.sort(sort);
+    allNews.push(...extendedSelection);
+  }
 
   const newsSection = document.createElement("section");
 
-  if (baseSelection.length && pinned) {
-    const headerNews = document.createElement("h1");
-    headerNews.textContent = "News";
-    newsSection.appendChild(headerNews);
-  }
+  const headerNews = document.createElement("h1");
+  headerNews.textContent = "News";
+  newsSection.appendChild(headerNews);
 
-  baseSelection.forEach((article) => {
+  allNews.forEach((article) => {
     const articleElement = document.createElement("article");
     renderText(article.title, "h1", articleElement, [
       "some",

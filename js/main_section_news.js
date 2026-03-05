@@ -6,7 +6,6 @@ class MainSection extends HTMLElement {
     this.innerHTML = "";
 
     renderNews(true, this);
-    renderNews(false, this);
   }
 }
 customElements.define('main-section', MainSection);

@@ -7,7 +7,7 @@ class MainSection extends HTMLElement {
 
     renderGigs(this);
 
-    renderNews(true, this);
+    renderNews(false, this);
   }
 }
 customElements.define("main-section", MainSection);
