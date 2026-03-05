@@ -57,6 +57,10 @@ ol li::marker {
   font-style: normal;
 }
 
+p {
+  font-size: 1.2rem;
+}
+
 #pageContainer {
   display: grid;
   gap: var(--gap);
@@ -121,10 +125,10 @@ a {
     height: auto;
     object-position: 0px 50%;
     margin: auto;
-  };
+  }
   h2 {
     margin-top: -8rem;
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0, 0, 0, 0.75);
     padding: 2rem;
     text-shadow: var(--text-shadow);
   }
@@ -236,6 +240,11 @@ ul#menuList {
     }
     a {
       padding: var(--padding-vert) var(--padding-horz);
+    }
+  }
+  #homeSection {
+    h2 {
+      margin-top: -4rem;
     }
   }
 }
