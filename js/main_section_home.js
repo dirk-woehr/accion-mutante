@@ -4,8 +4,7 @@ import { renderGigs } from "./render_gigs.js";
 class MainSection extends HTMLElement {
   connectedCallback() {
     this.innerHTML = "";
-/* 
-*/
+
     const homeSection = document.createElement("section");
     homeSection.id = "homeSection";
     homeSection.innerHTML = `<h1>Welcome to Accion Mutante's Official Website</h1>

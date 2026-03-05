@@ -3,6 +3,8 @@
   --main-text-color-rgb: 204, 204, 204;
   --main-text-color: rgb(var(--main-text-color-rgb));
 
+  --text-shadow: 8px 8px 8px #000000aa;
+
   --link-text-color: rgb(var(--main-text-color-rgb));
   --link-text-color-hover: rgba(var(--main-text-color-rgb), 0.75);
 
@@ -115,11 +117,17 @@ a {
 
 #homeSection {
   img {
-    width: 50%;
+    width: 90%;
     height: auto;
     object-position: 0px 50%;
     margin: auto;
   };
+  h2 {
+    margin-top: -8rem;
+    background-color: rgba(0,0,0,0.75);
+    padding: 2rem;
+    text-shadow: var(--text-shadow);
+  }
 }
 
 #mainSection {
@@ -148,7 +156,7 @@ a {
       padding: var(--base-gap);
       padding-bottom: calc(var(--base-gap) * 1.4);
 
-      text-shadow: 8px 8px 8px #000000aa;
+      text-shadow: var(--text-shadow);
       text-align: center;
 
       position: sticky;
@@ -201,7 +209,7 @@ ul#menuList {
     color: var(--main-text-color);
     text-align: center;
     font-size: 32px;
-    text-shadow: 8px 8px 8px #000000aa;
+    text-shadow: var(--text-shadow);
     border-radius: var(--base-gap);
     &:hover {
       background-color: var(--page-link-background-color-hover);
