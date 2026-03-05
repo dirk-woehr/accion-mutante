@@ -113,6 +113,15 @@ a {
   }
 }
 
+#homeSection {
+  img {
+    width: 50%;
+    height: auto;
+    object-position: 0px 50%;
+    margin: auto;
+  };
+}
+
 #mainSection {
   grid-area: main;
   display: flex;
