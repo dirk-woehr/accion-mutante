@@ -14,13 +14,17 @@ export const renderNews = (showAll, parent) => {
   const filterPinnedNews = (article) => {
     const inSelection = article.pinned === pinned;
     if(!inSelection) return false;
-  
+
+    console.log({inSelection});
+    
     const articleLaunched = new Date(article.startDate) <= currentDate;
     if(!articleLaunched) return false;
-  
-    const articleExpired = article.endDate
-      ? new Date(article.endDate) < currentDate
-      : false;
+
+    console.log({articleLaunched});
+    
+    const articleExpired = new Date(article.endDate) <= currentDate;
+    
+    console.log({articleExpired, currentDate, endDate: new Date(article.endDate)  });
   
     return !articleExpired; 
   };
@@ -36,6 +40,8 @@ export const renderNews = (showAll, parent) => {
     extendedSelection.sort(sort);
     allNews.push(...extendedSelection);
   }
+
+  console.log(allNews);
 
   const newsSection = document.createElement("section");
 

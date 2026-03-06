@@ -2,7 +2,7 @@ const articles = [
   {
     "id": "3f1f9b8e-6c4a-4a1e-9f6e-2c0c6f9d1b2a",
     "startDate": "2026-02-23",
-    "endDate": "2026-03-06",
+    "endDate": "2026-03-18",
     "title": "Test Article",
     "pinned": false,
     "paragraphs": [
