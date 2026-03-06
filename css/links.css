@@ -11,6 +11,14 @@
   gap: calc(var(--gap) * 3);
   div {
     h2 {
+      position: sticky;
+      top: var(--base-gap);
+      background-color: var(--sticky-header-background-color);
+      box-shadow: 10px 10px 50px black;
+      border-radius: var(--padding-vert);
+      padding: var(--base-gap);
+      padding-bottom: calc(var(--base-gap) * 1.4);
+      text-align: center;
       margin-top: 0;
       font-size: 3em;
       &::first-letter {

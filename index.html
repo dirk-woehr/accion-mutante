@@ -26,5 +26,33 @@
     <main-section id="mainSection"></main-section>
     <disclaimer-section id="disclaimer"></disclaimer-section>
   </div>
+  <input type="color" name="colorPickerBG" id="colorPickerBG" value="rgb(43, 66, 89)" style="position: fixed; top: 10px; right: 10px;">
+  <script>
+    const colorPickerBG = document.getElementById("colorPickerBG");
+    colorPickerBG.addEventListener("input", (event) => {
+      const selectedColor = event.target.value.replace('#', '');
+
+      const r = parseInt(selectedColor.substring(0, 2), 16);
+      const g = parseInt(selectedColor.substring(2, 4), 16);
+      const b = parseInt(selectedColor.substring(4, 6), 16);
+
+      console.log({selectedColor, target: event.target});
+      document.documentElement.style.setProperty('--background-color-rgb', [r,g,b].join(", "));
+    });
+  </script>
+  <input type="color" name="colorPickerUI" id="colorPickerUI" value="rgb(105, 27, 27)" style="position: fixed; top: 10px; left: 10px;">
+  <script>
+    const colorPickerUI = document.getElementById("colorPickerUI");
+    colorPickerUI.addEventListener("input", (event) => {
+      const selectedColor = event.target.value.replace('#', '');
+
+      const r = parseInt(selectedColor.substring(0, 2), 16);
+      const g = parseInt(selectedColor.substring(2, 4), 16);
+      const b = parseInt(selectedColor.substring(4, 6), 16);
+
+      console.log({selectedColor, target: event.target});
+      document.documentElement.style.setProperty('--ui-color-rgb', [r,g,b].join(", "));
+    });
+  </script>
 </body>
 </html>
