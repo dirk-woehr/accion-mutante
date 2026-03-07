@@ -83,8 +83,14 @@ export const manyArticles = [
       [
         {
           type: "h2",
-          text: 'Taken from the forthcoming album "The Time Machine" out April 10th 2026 on Holy Goat Records.',
+          text: 'Taken from the forthcoming album "The Time Machine"',
         },
+        {
+          type: "span",
+          text: "Out April 10th 2026<br>on Holy Goat Records",
+        },
+      ],
+      [
         {
           type: "span",
           text: "Lyrics: Jan Off<br>Music: Accion Mutante",

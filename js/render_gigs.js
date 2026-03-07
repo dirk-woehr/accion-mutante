@@ -1,5 +1,5 @@
 import { gigs } from "../data/gig_data.js";
-import { dateOptions } from "./consts.js";
+import { dateOptions, getLang } from "./consts.js";
 
 const sortGigsDesc = (a, b) => {
   const dateA = new Date(a.date);
@@ -68,7 +68,7 @@ export const renderGigs = (parent) => {
           <img src="${image}" alt="${title}">
         </div>
         <div class="gigInfo">
-          <h3 class="gigDate">${new Date(date).toLocaleDateString("de-DE", dateOptions)}</h3>
+          <h3 class="gigDate">${new Date(date).toLocaleDateString(getLang(), dateOptions)}</h3>
           <div class="gigLocation">
             <h3>${location.name}<br>${location.city} / ${location.country}</h3>
           </div>

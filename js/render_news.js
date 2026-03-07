@@ -1,5 +1,5 @@
 import { renderText, renderLink, renderYouTube } from "./global.js";
-import { dateOptions } from "./consts.js";
+import { dateOptions, getLang } from "./consts.js";
 import { manyArticles } from "../data/news_data.js";
 
 const sort = (a, b) => {
@@ -48,7 +48,7 @@ export const renderNews = (showAll, parent) => {
     // Render title
     renderText(title, "h1", articleElement, ["some", "classes", "to", "add"]);
     renderText(
-      new Date(startDate).toLocaleDateString("de-DE", dateOptions),
+      new Date(startDate).toLocaleDateString(getLang(), dateOptions),
       "p",
       articleElement,
       ["date"],
