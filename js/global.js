@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-
-/*   await Promise.all([
+  /*   await Promise.all([
     customElements.whenDefined('page-content'),
   ]); */
 
@@ -18,10 +17,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   btnMenuToggle.addEventListener("click", () => {
     menuList.classList.toggle("show");
     btnMenuToggle.classList.toggle("show");
-  })
+  });
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         scrollToMenu.classList.toggle("show", false);
       } else {
@@ -33,7 +32,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   observer.observe(document.querySelector("#menuList"));
 });
 
-
 /**
  * Render a standard text element
  *
@@ -41,21 +39,21 @@ document.addEventListener("DOMContentLoaded", async function () {
  * @param { string } elementType - Tag name
  * @param { HTMLElement } parent - Parent element to append new element
  * @param { string[]= } classList - Array of CSS classes
-*/
+ */
 export const renderText = (text, elementType, parent, classList) => {
   const textElement = document.createElement(elementType);
   textElement.classList.add(...classList);
   textElement.innerHTML = text;
   parent.appendChild(textElement);
-}
+};
 
 /**
  * Render an <a> element
-*
-* @param { string } title - Text content for the element
-* @param { string } url - target for link
-* @param { HTMLElement } parent - Parent element to append new element
-* @param { string[]= } classList - Array of CSS classes
+ *
+ * @param { string } title - Text content for the element
+ * @param { string } url - target for link
+ * @param { HTMLElement } parent - Parent element to append new element
+ * @param { string[]= } classList - Array of CSS classes
  */
 export const renderLink = (title, url, parent, classList) => {
   const aElement = document.createElement("a");
@@ -63,4 +61,16 @@ export const renderLink = (title, url, parent, classList) => {
   aElement.innerHTML = title;
   aElement.setAttribute("href", url);
   parent.appendChild(aElement);
-}
+};
+
+/**
+ * Render a YouTube iframe
+ *
+ * @param { string } url - target for link
+ * @param { HTMLElement } parent - Parent element to append new element
+ * @param { string[]= } classList - Array of CSS classes
+ */
+export const renderYouTube = (url, parent) => {
+  if (url === undefined) return;
+  parent.innerHTML += url;
+};

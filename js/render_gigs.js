@@ -1,4 +1,5 @@
 import { gigs } from "../data/gig_data.js";
+import { dateOptions } from "./consts.js";
 
 const sortGigsDesc = (a, b) => {
   const dateA = new Date(a.date);
@@ -46,23 +47,33 @@ export const renderGigs = (parent) => {
       }
     }
     selection.forEach((gig) => {
+      const {
+        bands,
+        title,
+        image,
+        date,
+        location,
+        timeOpen,
+        timeStart,
+        description,
+      } = gig;
       const bandList = [];
-      gig.bands.forEach((band) => {
+      bands.forEach((band) => {
         bandList.push(band.name);
       });
       const currentGig = document.createElement("div");
       currentGig.classList.add("gig");
-      currentGig.innerHTML = `<h1 class="gigTitle">${gig.title}</h1>
+      currentGig.innerHTML = `<h1 class="gigTitle">${title}</h1>
         <div class="gigImage">
-          <img src="${gig.image}" alt="${gig.title}">
+          <img src="${image}" alt="${title}">
         </div>
         <div class="gigInfo">
-          <h3 class="gigDate">${gig.date}</h3>
+          <h3 class="gigDate">${new Date(date).toLocaleDateString("de-DE", dateOptions)}</h3>
           <div class="gigLocation">
-            <h3>${gig.location.name}<br>${gig.location.city} / ${gig.location.country}</h3>
+            <h3>${location.name}<br>${location.city} / ${location.country}</h3>
           </div>
-          <h3 class="gigTimeOpen">Einlass: ${gig.timeOpen} Uhr</h3>
-          <h3 class="gigTimeStart">Beginn: ${gig.timeStart} Uhr</h3>
+          <h3 class="gigTimeOpen">Einlass: ${timeOpen} Uhr</h3>
+          <h3 class="gigTimeStart">Beginn: ${timeStart} Uhr</h3>
         </div>
         <div class="gigBands">
           <h2>Bands</h2>
@@ -70,7 +81,7 @@ export const renderGigs = (parent) => {
             ${bandList.map((band) => `<li>${band}</li>`).join("")}
           </ul>
         </div>
-        <p class="gigDescription">${gig.description}</p>`;
+        <p class="gigDescription">${description}</p>`;
       gigsSection.appendChild(currentGig);
     });
 

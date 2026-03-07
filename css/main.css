@@ -10,8 +10,8 @@
 
   /* keep for easy switch of RGB values (org: 105, 27, 27) */
   --background-color-rgb: rgb(105, 27, 27);
-  --background-color-rgb: 43, 66, 89;
-  --ui-color-rgb: 122, 10, 13;
+  --background-color-rgb: 156, 132, 89;
+  --ui-color-rgb: 108, 98, 79;
 
   --page-link-background-color-hover: rgb(var(--ui-color-rgb));
   --page-link-background-color: rgba(var(--ui-color-rgb), 0.75);
@@ -175,6 +175,10 @@ article {
   background-color: var(--article-background-color);
   border-radius: var(--gap);
   padding: var(--padding-vert) var(--padding-horz);
+  .date {
+    font-size: 0.8rem;
+    margin-top: -1rem;
+  }
   a {
     font-weight: 800;
     color: var(--link-text-color);
@@ -182,6 +186,10 @@ article {
     &:hover {
       color: var(--link-text-color-hover);
     }
+  }
+  iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
   }
 }
 

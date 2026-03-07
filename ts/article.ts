@@ -6,6 +6,7 @@ interface Article {
   endDate: string;
   title: string;
   pinned: boolean;
+  youtube?: string;
   paragraphs: Paragraph[];
 }
 
