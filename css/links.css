@@ -49,7 +49,7 @@
         &:hover {
           color: var(--link-text-color-hover);
           img {
-            opacity: 0.8;
+            opacity: 0.666;
           }
         }
       }
