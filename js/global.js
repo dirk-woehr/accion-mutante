@@ -42,7 +42,9 @@ document.addEventListener("DOMContentLoaded", async function () {
  */
 export const renderText = (text, elementType, parent, classList) => {
   const textElement = document.createElement(elementType);
-  textElement.classList.add(...classList);
+  if(classList) {
+    textElement.classList.add(...classList);
+  }
   textElement.innerHTML = text;
   parent.appendChild(textElement);
 };
@@ -57,7 +59,9 @@ export const renderText = (text, elementType, parent, classList) => {
  */
 export const renderLink = (title, url, parent, classList) => {
   const aElement = document.createElement("a");
-  aElement.classList.add(...classList);
+  if(classList) {
+    aElement.classList.add(...classList);
+  }
   aElement.innerHTML = title;
   aElement.setAttribute("href", url);
   parent.appendChild(aElement);
@@ -74,3 +78,26 @@ export const renderYouTube = (url, parent) => {
   if (url === undefined) return;
   parent.innerHTML += url;
 };
+
+/**
+ * Render a YouTube iframe
+ *
+ * @param { string } listElements - target for link
+ * @param { HTMLElement } parent - Parent element to append new element
+ * @param { string[]= } classList - Array of CSS classes
+ */
+export const renderList = (listElements, listType, parent, classList) => {
+  const ulElement = document.createElement(listType);
+  if(classList) {
+    console.log({classList, listElements, parent, listType});
+    ulElement.classList.add(...classList);
+  }
+  listElements.forEach((element) => {
+    const liElement = document.createElement("li");
+    liElement.textContent = element;
+    ulElement.appendChild(liElement);
+  });
+  parent.appendChild(ulElement);
+};
+
+

@@ -1,0 +1,69 @@
+export const releases = [
+  {
+    title: "The Time Machine",
+    status: "available",
+    type: "Album",
+  
+    releaseDate: "2026-04-10",
+    label: "Holy Goat Records",
+    formats: ["CD", "LP", "Digital"],
+    // shopURL: "https://holygoatrecords.bandcamp.com/merch",
+    image: "./images/releases/time_machine.jpg",
+    description: "Accion Mutante strikes back with a new LP:<br>&quot;The Time Machine&quot; promises a brutal, misanthropic journey through three decades of Accion Mutante's history, including ten brand-new tracks + ten newly recorded songs spanning from the band's very beginnings to the present day.",
+    tracks: [
+      "Das Hohelied der Larmoyanz",
+    ]
+  },
+  {
+    title: "Das Hohelied der Larmoyanz",
+    status: "available",
+    type: "Single",
+  
+    releaseDate: "2026-04-09",
+    label: "Holy Goat Records",
+    formats: ["CD", "LP", "Digital"],
+    // shopURL: "https://holygoatrecords.bandcamp.com/merch",
+    image: "./images/releases/hohelied.jpg",
+    description: "&quot;Das Hohelied der Larmoyanz&quot; is the first digital single from the upcoming Accion Mutante album &quot;The Time Machine&quot; (out April 10th 2026 on Holy Goat Records).<br><br>Originally a poem by the brilliant writer and band's own long-term friend Jan Off, Accion Mutante created the ugly ear-slaughtering soundtrack to the human whining about it's self-pity and depression.",
+    tracks: [
+      "Fear",
+      "Dreads and Spikes",
+      "Die Human Race",
+      "What a Wonderful World",
+      "Creature of Inhuman Power",
+      "Dead Dream",
+      "Desensitized",
+      "Ghetto Europa",
+      "Narcissism of Mankind",
+      "Kranenwald",
+      "Der Papst",
+      "Fuck Cancer",
+      "Collapse",
+      "Intox Not Detox",
+      "Das Hohelied der Larmoyanz",
+      "Mankind is the Reason",
+      "Drug Schools",
+      "Loser",
+      "Theodicy",
+      "Odin - Jesus",
+    ]
+  },
+  {
+    title: "Fear",
+    status: "outOfPrint",
+    type: "EP",
+  
+    releaseDate: "2026-04-10",
+    label: "SKULD RELEASES",
+    // shopURL: "https://holygoatrecords.bandcamp.com/merch",
+    image: "./images/releases/fear.jpg",
+    description: "the first output. 5 songs on SKULD RELEASES",
+    tracks: [
+      "Fear",
+      "Dreads and Spikes",
+      "American Psycho",
+      "Gewalt Gegen Andere",
+      "The World's My Country",
+    ]
+  },
+];

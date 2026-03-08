@@ -53,7 +53,7 @@ h4,
 h5,
 h6,
 a.pageLink,
-ol li::marker {
+#disclaimer ol li::marker {
   font-family: "Rubik Glitch", system-ui;
   font-weight: 400;
   font-style: normal;

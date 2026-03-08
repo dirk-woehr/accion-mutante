@@ -1,0 +1,79 @@
+.release {
+  display: grid;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 2);
+  grid-template-areas: 
+    "title"
+    "image"
+    "description"
+    "tracks";
+  .title {
+    grid-area: title;
+    margin: 0;
+  }
+  .image {
+    grid-area: image;
+    width: 100%;
+  }
+  .description {
+    grid-area: description;
+  }
+  .tracks {
+    grid-area: tracks;
+  }
+  .formatsHeader {
+    font-weight: bold;
+    margin: var(--gap) 0 calc(var(--base-gap) / 2) 0;
+  }
+  .formatList {
+    font-size: 0.875rem;
+  }
+  .descriptionText {
+    margin-top: 0;
+  }
+  .trackHeader {
+    margin: 0;
+  }
+  .releaseType {
+    margin-top: 0;
+  }
+  ol.tracklist {
+    padding: 0;
+    margin: var(--base-gap) 0 0 var(--gap);
+  }
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li:not(:first-child):before {
+      content: "/";
+      padding-right: var(--base-gap);
+      margin-left: var(--base-gap);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .release {
+    padding: var(--gap);
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "title description tracks"
+      "image description tracks";
+  }
+  ol.tracklist {
+    font-size: 0.8em;
+  }
+}
+
+@media (min-width: 1280px) {
+  .release {
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-areas: 
+      "title title title"
+      "image description tracks";
+  }
+}
