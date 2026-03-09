@@ -1,30 +1,30 @@
 export const releases = [
   {
-    title: "The Time Machine",
+    title: "Das Hohelied der Larmoyanz",
     status: "available",
-    type: "Album",
+    type: "Single",
   
     releaseDate: "2026-04-10",
     label: "Holy Goat Records",
     formats: ["CD", "LP", "Digital"],
     // shopURL: "https://holygoatrecords.bandcamp.com/merch",
     image: "./images/releases/time_machine.jpg",
-    description: "Accion Mutante strikes back with a new LP:<br>&quot;The Time Machine&quot; promises a brutal, misanthropic journey through three decades of Accion Mutante's history, including ten brand-new tracks + ten newly recorded songs spanning from the band's very beginnings to the present day.",
+    description: "&quot;Das Hohelied der Larmoyanz&quot; is the first digital single from the upcoming Accion Mutante album &quot;The Time Machine&quot; (out April 10th 2026 on Holy Goat Records).<br><br>Originally a poem by the brilliant writer and band's own long-term friend Jan Off, Accion Mutante created the ugly ear-slaughtering soundtrack to the human whining about it's self-pity and depression.",
     tracks: [
       "Das Hohelied der Larmoyanz",
     ]
   },
   {
-    title: "Das Hohelied der Larmoyanz",
+    title: "The Time Machine",
     status: "available",
-    type: "Single",
-  
+    type: "Album",
+    
     releaseDate: "2026-04-09",
     label: "Holy Goat Records",
     formats: ["CD", "LP", "Digital"],
     // shopURL: "https://holygoatrecords.bandcamp.com/merch",
     image: "./images/releases/hohelied.jpg",
-    description: "&quot;Das Hohelied der Larmoyanz&quot; is the first digital single from the upcoming Accion Mutante album &quot;The Time Machine&quot; (out April 10th 2026 on Holy Goat Records).<br><br>Originally a poem by the brilliant writer and band's own long-term friend Jan Off, Accion Mutante created the ugly ear-slaughtering soundtrack to the human whining about it's self-pity and depression.",
+    description: "Accion Mutante strikes back with a new LP:<br>&quot;The Time Machine&quot; promises a brutal, misanthropic journey through three decades of Accion Mutante's history, including ten brand-new tracks + ten newly recorded songs spanning from the band's very beginnings to the present day.",
     tracks: [
       "Fear",
       "Dreads and Spikes",

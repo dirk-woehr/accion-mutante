@@ -17,12 +17,12 @@
   }
   .description {
     grid-area: description;
+    padding-left: var(--base-gap);
   }
   .tracks {
     grid-area: tracks;
   }
   .formatsHeader {
-    font-weight: bold;
     margin: var(--gap) 0 calc(var(--base-gap) / 2) 0;
   }
   .formatList {
