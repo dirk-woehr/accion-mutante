@@ -56,9 +56,20 @@ export const renderNews = (showAll, parent) => {
 
     renderYouTube(youtube, articleElement);
 
-    paragraphs.forEach((paragraph) => {
+    paragraphs.forEach((p) => {
+      let paragraphContainer;
       const pElement = document.createElement("p");
-      paragraph.forEach((element) => {
+      if (p.image) {
+        paragraphContainer = document.createElement("div");
+        paragraphContainer.classList.add("imageParagraph");
+        const image = document.createElement("div");
+        image.setAttribute("style", `background-image: url('${p.image}');`);
+        paragraphContainer.appendChild(image);
+        paragraphContainer.appendChild(pElement);
+      } else {
+        paragraphContainer = pElement;
+      }
+      p.elements.forEach((element) => {
         switch (element.type) {
           case "span":
             renderText(element.text, element.type, pElement, [
@@ -88,7 +99,7 @@ export const renderNews = (showAll, parent) => {
             break;
         }
       });
-      articleElement.appendChild(pElement);
+      articleElement.appendChild(paragraphContainer);
     });
     newsSection.appendChild(articleElement);
   });

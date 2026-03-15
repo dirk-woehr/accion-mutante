@@ -191,6 +191,21 @@ article {
     width: 100%;
     aspect-ratio: 16 / 9;
   }
+  .imageParagraph {
+    display: grid;
+    grid-template-areas:
+      "image"
+      "paragraph";
+    gap: var(--gap);
+    div {
+      grid-area: image;
+      background-size: cover;
+    }
+    p {
+      grid-area: paragraph;
+      margin-top: 0;
+    }
+  }
 }
 
 #disclaimer {
@@ -257,6 +272,11 @@ ul#menuList {
       margin-top: -4rem;
     }
   }
+  .imageParagraph {
+    div {
+      aspect-ratio: 1 / 1;
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -274,6 +294,18 @@ ul#menuList {
       text-align: right;
     }
   }
+  article {
+    .imageParagraph {
+      grid-template-areas: "image paragraph";
+      grid-template-columns: 1fr 2fr;
+      p {
+        margin-top: 0;
+        h2:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 1280px) {
@@ -283,5 +315,11 @@ ul#menuList {
       "head head"
       "menu main"
       "menu disc";
+  }
+  article {
+    .imageParagraph {
+      grid-template-areas: "image paragraph";
+      grid-template-columns: 2fr 3fr;
+    }
   }
 }

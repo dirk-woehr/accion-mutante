@@ -10,7 +10,10 @@ interface Article {
   paragraphs: Paragraph[];
 }
 
-type Paragraph = (h2 | span | link)[];
+type Paragraph = {
+  image: string;
+  elements: (h2 | span | link)[];
+};
 
 interface h2 {
   type: "h2";
