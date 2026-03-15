@@ -200,6 +200,7 @@ article {
     div {
       grid-area: image;
       background-size: cover;
+      background-position: center;
     }
     p {
       grid-area: paragraph;
@@ -297,7 +298,7 @@ ul#menuList {
   article {
     .imageParagraph {
       grid-template-areas: "image paragraph";
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: 1fr 1fr;
       p {
         margin-top: 0;
         h2:nth-child(1) {
@@ -319,7 +320,7 @@ ul#menuList {
   article {
     .imageParagraph {
       grid-template-areas: "image paragraph";
-      grid-template-columns: 2fr 3fr;
+      grid-template-columns: 4fr 5fr;
     }
   }
 }

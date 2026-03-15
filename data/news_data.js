@@ -7,7 +7,7 @@ const articles = [
     pinned: false,
     paragraphs: [
       {
-        image: "https://picsum.photos/id/120/512/512",
+        image: "./images/logo_quad.jpg",
         elements: [
           {
             type: "h2",
