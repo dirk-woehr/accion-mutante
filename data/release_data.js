@@ -66,4 +66,29 @@ export const releases = [
       "The World's My Country",
     ]
   },
+  {
+    title: "Ghetto Europa",
+    status: "available",
+    type: "Album",
+    formats: ["Digital"],  
+    releaseDate: "2002-01-01",
+    label: "DIY",
+    shopURL: "https://accionmutante1.bandcamp.com/album/ghetto-europa-2002",
+    image: "./images/releases/ghetto_europa.jpg",
+    description: "",
+    tracks: [
+      "Ghetto Europa",
+      "Who the Fuck You Think You Are",
+      "No Light in the Darkness",
+      "Desensitized",
+      "Act Like God",
+      "You're Not Better",
+      "Control of My Mind",
+      "Last Amen",
+      "Hate Us",
+      "Dead Dream",
+      "Bomb in the Brain",
+      "...To an End",
+    ]
+  },
 ];

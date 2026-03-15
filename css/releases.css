@@ -40,6 +40,9 @@
   ol.tracklist {
     padding: 0;
     margin: var(--base-gap) 0 0 var(--gap);
+    li {
+      text-wrap: balance;
+    }
   }
   ul {
     display: flex;
