@@ -2,7 +2,7 @@ const articles = [
   {
     id: "3f1f9b8e-6c4a-4a1e-9f6e-2c0c6f9d1b2a",
     startDate: "2026-02-23",
-    endDate: "2026-03-18",
+    endDate: "2026-03-28",
     title: "Test Article",
     pinned: false,
     paragraphs: [
@@ -79,7 +79,7 @@ export const manyArticles = [
   {
     id: "c51f9b8e-6c4a-4a1e-9f6e-2c0c6f9d1b17",
     startDate: "2026-03-07",
-    endDate: "2026-03-18",
+    endDate: "2026-03-28",
     title: "Das Hohelied der Larmoyanz on YouTube",
     pinned: true,
     youtube:

@@ -3,7 +3,7 @@ const articles: Article[] = [];
 interface Article {
   id: string;
   startDate: string;
-  endDate: string;
+  endDate?: string;
   title: string;
   pinned: boolean;
   youtube?: string;
@@ -11,7 +11,7 @@ interface Article {
 }
 
 type Paragraph = {
-  image: string;
+  image?: string;
   elements: (h2 | span | link)[];
 };
 

@@ -1,4 +1,5 @@
 export interface Band {
   name: string;
-  url: string;
+  url?: string;
+  image?: string;
 }
