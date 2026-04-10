@@ -63,6 +63,30 @@ export const manyArticles = [
   ...articles,
   ...articles,
   ...articles,
+  {
+    "id": "0c8ecbfc-7608-43a0-ac97-3ebc193a03b3",
+    "startDate": "2026-03-19",
+    "endDate": "2026-06-12",
+    "title": "Ein neuer Artikel",
+    "pinned": true,
+    "paragraphs": [
+      {elements:       [
+        {
+          "type": "h2",
+          "text": "This is a Subheader"
+        },
+        {
+          "type": "span",
+          "text": "To go to Google, go this way please.Otherwise stay here. No light but the muted purring of the blowers and the amplified breathing of the fighters. The alarm still oscillated, louder here, the rear wall dulling the roar of the room where Case waited. The semiotics of the Sprawl’s towers and ragged Fuller domes, dim figures moving toward him in the dark. Light from a service hatch at the rear wall dulling the roar of the room where Case waited. Its hands were holograms that altered to match the convolutions of the console in faded pinks and yellows. She peered at the clinic, Molly took him to the simple Chinese hollow points Shin had sold him. The girls looked like tall, exotic grazing animals, swaying gracefully and unconsciously with the movement of the train"
+        },
+        {
+          "type": "link",
+          "title": "Chinese hollow points",
+          "url": "https://www.google.com/"
+        }
+      ]}
+    ]
+  },
   { ...articles[0], pinned: true, title: "A Pinned Article" },
   {
     ...articles[0],
@@ -108,3 +132,5 @@ export const manyArticles = [
     ],
   },
 ];
+
+

@@ -13,8 +13,10 @@ https://min-max-calculator.9elements.com/?24,48,320,1280
 ## Eigenschaften Artikel
 * id: UUID als String
 * startDate: Format: JJJJ-MM-TT (z.B.: 2026-11-27)
-* endDate: Format: JJJJ-MM-TT (z.B.: 2026-11-27) (optional)
-  * Um angezeigt zu werden, muss Startdatum kleiner heute sein und Enddatum größer heute, oder nicht gesetzt sein.
+* endDate: Format: siehe startDate (optional)
+  * News wird angezeigt wenn:
+    * startDate kleiner heute
+    * endDate größer heute oder nicht gesetzt
 * title: Überschrift
 * pinned: boolean (wenn "true", erscheint der Artikel auf der Startseite, sonst nur unter News)
 * YouTube: Link zu YouTube-Video (nur eines pro Artikel)
