@@ -1,5 +1,21 @@
+@font-face {
+  font-family: "IM Fell English";
+  src: url("./fonts/IM_Fell_English/IMFellEnglish-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IM Fell English";
+  src: url("./fonts/IM_Fell_English/IMFellEnglish-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "IM Fell English", serif;
   background-color: black;
 }
 
@@ -45,12 +61,12 @@ summary::-webkit-details-marker {
 }
 
 summary::after {
-  content: "➕";
+  content: "+";
   float: right;
 }
 
 details[open] summary::after {
-  content: "➖";
+  content: "-";
 }
 
 details[open] {
@@ -59,6 +75,10 @@ details[open] {
 
 .detailsContainer {
   padding: 1rem;
+}
+
+.mainContainer {
+  min-height: 100dvh;
 }
 
 .mainImageContainer {
@@ -137,8 +157,8 @@ details[open] {
   content: attr(data-label);
   position: absolute;
   bottom: -35px;
-  font-size: 13px;
-  color: #ddd;
+  font-size: 14px;
+  color: rgb(206 191 158);
   opacity: 0;
   transform: translateY(5px);
   transition: all 0.2s ease;
