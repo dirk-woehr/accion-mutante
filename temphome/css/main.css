@@ -1,6 +1,6 @@
 @font-face {
   font-family: "IM Fell English";
-  src: url("./fonts/IM_Fell_English/IMFellEnglish-Regular.ttf") format("truetype");
+  src: url("../fonts/IM_Fell_English/IMFellEnglish-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -8,10 +8,19 @@
 
 @font-face {
   font-family: "IM Fell English";
-  src: url("./fonts/IM_Fell_English/IMFellEnglish-Italic.ttf") format("truetype");
+  src: url("../fonts/IM_Fell_English/IMFellEnglish-Italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
+}
+
+:root {
+  --color-text: 206 191 158;
+  --color-background: 82, 63, 34;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -25,6 +34,15 @@ a {
   &:hover {
     color: white;
   }
+}
+
+#details {
+  padding-top: 4rem;
+  background-color: rgb(39, 33, 24); 
+  min-height: 100dvh;
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
 }
 
 details {
@@ -77,13 +95,15 @@ details[open] {
   padding: 1rem;
 }
 
-.mainContainer {
+#mainContainer {
   min-height: 100dvh;
+  position: sticky;
+  top: 4rem;
 }
 
 .mainImageContainer {
   width: min(960px, 98dvw);
-  background-image: url("./images/home-04-26.webp");
+  background-image: url("../images/home-04-26.webp");
   background-size: cover;
   background-position: center;
   margin: 4rem auto calc(clamp(5rem, 1.571rem + 10.71vw, 8rem) * -1) auto;
@@ -186,6 +206,10 @@ details[open] {
 
 .bandcamp:hover {
   background: rgba(98, 196, 255, 0.25);
+}
+
+.concerts:hover {
+  background: rgba(75, 255, 20, 0.25);
 }
 
 /* Firefox */

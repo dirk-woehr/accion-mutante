@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gig-Verwaltung</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #151719;
+      --panel: #202326;
+      --field: #111315;
+      --line: #3b4146;
+      --text: #edf0f2;
+      --muted: #aeb7bd;
+      --accent: #a8e063;
+      --danger: #ff8585
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.5 system-ui, sans-serif
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--line)
+    }
+
+    h1 {
+      font-size: 1.2rem;
+      margin: 0
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 0
+    }
+
+    .actions,
+    .toolbar {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      align-items: center
+    }
+
+    button,
+    select,
+    input,
+    textarea {
+      font: inherit;
+      color: inherit
+    }
+
+    button,
+    select {
+      background: #30363a;
+      border: 1px solid #525b62;
+      border-radius: 7px;
+      padding: .55rem .8rem;
+      cursor: pointer
+    }
+
+    button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #17200e;
+      font-weight: 700
+    }
+
+    button.danger {
+      border-color: #884747;
+      color: #ffb5b5
+    }
+
+    button:disabled {
+      opacity: .45;
+      cursor: not-allowed
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      min-height: calc(100vh - 70px)
+    }
+
+    .pane {
+      padding: 1.1rem;
+      min-width: 0
+    }
+
+    .pane+.pane {
+      border-left: 1px solid var(--line)
+    }
+
+    .panehead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      margin-bottom: 1rem
+    }
+
+    .muted,
+    .hint {
+      color: var(--muted);
+      font-size: .88rem
+    }
+
+    .fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+      min-width: 0
+    }
+
+    .field.full {
+      grid-column: 1/-1
+    }
+
+    label,
+    .field-title {
+      font-weight: 650;
+      font-size: .9rem
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      background: var(--field);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: .7rem .75rem;
+      outline: none
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent)
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 115px
+    }
+
+    .subhead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .5rem;
+      margin: .4rem 0 .5rem
+    }
+
+    .address-row {
+      display: flex;
+      gap: .5rem;
+      margin-bottom: .5rem
+    }
+
+    .address-row input {
+      flex: 1
+    }
+
+    .address-row button {
+      flex: none
+    }
+
+    .status {
+      margin: .85rem 0 0;
+      min-height: 1.4em;
+      color: var(--muted);
+      font-size: .86rem
+    }
+
+    .status.error {
+      color: var(--danger)
+    }
+
+    .preview-wrap {
+      display: flex;
+      justify-content: center;
+      padding: .5rem 0
+    }
+
+    .gig {
+      position: relative;
+      width: min(100%, 480px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #25292c
+    }
+
+    .gig .image {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      background: #111;
+      min-height: 80px
+    }
+
+    .gig .title {
+      padding: 1rem 1rem .25rem;
+      font-size: clamp(1.25rem, 2.5vw, 2rem)
+    }
+
+    .gig p {
+      margin: .55rem 1rem
+    }
+
+    .gig .location {
+      font-weight: 700
+    }
+
+    .gig .address {
+      color: var(--muted)
+    }
+
+    .gig .date {
+      font-weight: 700
+    }
+
+    .gig .time {
+      color: var(--muted)
+    }
+
+    .gig .description {
+      white-space: pre-wrap
+    }
+
+    .gig .link {
+      display: inline-block;
+      margin: .6rem 1rem 1rem;
+      color: var(--accent);
+      position: relative;
+      z-index: 1
+    }
+
+    .empty {
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 8px
+    }
+
+    .image-note {
+      font-size: .8rem;
+      color: var(--muted)
+    }
+
+    @media(max-width:850px) {
+      main {
+        grid-template-columns: 1fr
+      }
+
+      .pane+.pane {
+        border-left: 0;
+        border-top: 1px solid var(--line)
+      }
+
+      header {
+        align-items: flex-start;
+        flex-direction: column
+      }
+
+      .fields {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:520px) {
+      .fields {
+        grid-template-columns: 1fr
+      }
+
+      .field.full {
+        grid-column: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div>
+      <h1>Gig-Verwaltung</h1>
+      <div class="hint">Veranstaltungen einfach bearbeiten – ohne JSON-Kenntnisse</div>
+    </div>
+    <div class="actions"><button id="openFile">Datei öffnen</button><button id="save" class="primary">Änderungen
+        speichern</button></div>
+  </header>
+  <main>
+    <section class="pane" aria-label="Gig bearbeiten">
+      <div class="panehead">
+        <h2>Veranstaltung bearbeiten</h2><span class="muted" id="count">0 Einträge</span>
+      </div>
+      <div class="toolbar" style="margin-bottom:1rem"><label for="gigSelect">Veranstaltung</label><select id="gigSelect"
+          style="flex:1;min-width:150px"></select><button id="add">+ Neu</button><button
+          id="duplicate">Duplizieren</button><button id="remove" class="danger">Löschen</button></div>
+      <form id="gigForm" class="fields" autocomplete="off">
+        <div class="field full"><label for="title">Titel der Veranstaltung *</label><input id="title" name="title"
+            required placeholder="z. B. Punk Night Vol. 3"></div>
+        <div class="field full"><label for="image">Bilddatei *</label><input id="image" name="image" required
+            placeholder="z. B. punk-night.jpg"><span class="image-note">Dateiname im Ordner <code>images/gigs/</code>,
+            nicht den ganzen Pfad eingeben.</span></div>
+        <div class="field"><label for="date">Datum *</label><input id="date" name="date" type="date" required></div>
+        <div class="field"><label for="location">Veranstaltungsort *</label><input id="location" name="location"
+            required placeholder="Clubname"></div>
+        <div class="field"><label for="timeDoorsOpen">Einlass *</label><input id="timeDoorsOpen" name="timeDoorsOpen"
+            type="time" required></div>
+        <div class="field"><label for="timeStart">Beginn *</label><input id="timeStart" name="timeStart" type="time"
+            required></div>
+        <div class="field full">
+          <div class="subhead"><span class="field-title">Adresse (eine Zeile pro Feld)</span><button type="button"
+              id="addAddress">+ Adresszeile</button></div>
+          <div id="addresses"></div>
+        </div>
+        <div class="field full"><label for="description">Beschreibung</label><textarea id="description"
+            name="description" rows="5" placeholder="Zusätzliche Infos zur Veranstaltung …"></textarea></div>
+        <div class="field full"><label for="link">Link (optional)</label><input id="link" name="link" type="url"
+            placeholder="https://…"></div>
+      </form>
+      <p class="status" id="status" role="status">Lade ./data/gig_data.js …</p>
+      <p class="hint">Die Vorschau rechts aktualisiert sich automatisch. Speichere deine Änderungen, bevor du die Seite
+        schließt.</p>
+    </section>
+    <section class="pane" aria-label="Live-Vorschau">
+      <div class="panehead">
+        <h2>Live-Vorschau</h2><span class="muted">So erscheint der Eintrag</span>
+      </div>
+      <div class="preview-wrap">
+        <div id="preview" style="width:100%"></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    (() => {
+      const $ = s => document.querySelector(s); const form = $('#gigForm'), select = $('#gigSelect'), addresses = $('#addresses'), status = $('#status'), preview = $('#preview');
+      let data = { gigs: [] }, current = 0, fileHandle = null, dirty = false, loading = false;
+      const blank = () => ({ title: '', image: '', date: '', location: '', timeDoorsOpen: '', timeStart: '', address: [''], description: '', link: '' });
+      function setStatus(msg, error = false) { status.textContent = msg; status.classList.toggle('error', error) }
+      function markDirty() { if (!loading) dirty = true }
+      function getFormGig() { const f = new FormData(form); return { title: f.get('title') || '', image: f.get('image') || '', date: f.get('date') || '', location: f.get('location') || '', timeDoorsOpen: f.get('timeDoorsOpen') || '', timeStart: f.get('timeStart') || '', address: [...addresses.querySelectorAll('input')].map(x => x.value), description: f.get('description') || '', ...(f.get('link')?.trim() ? { link: f.get('link').trim() } : {}) } }
+      function syncCurrent() { if (data.gigs.length && data.gigs[current]) data.gigs[current] = getFormGig() }
+      function renderSelect() { select.replaceChildren(); data.gigs.forEach((g, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i + 1}. ${g.title || 'Neue Veranstaltung'}`; select.append(o) }); select.disabled = !data.gigs.length; $('#count').textContent = `${data.gigs.length} ${data.gigs.length === 1 ? 'Eintrag' : 'Einträge'}`; select.value = String(current); $('#remove').disabled = !data.gigs.length; $('#duplicate').disabled = !data.gigs.length }
+      function renderAddress(values) { addresses.replaceChildren(); (values?.length ? values : ['']).forEach(value => { const row = document.createElement('div'); row.className = 'address-row'; const input = document.createElement('input'); input.type = 'text'; input.value = value; input.placeholder = 'Adresszeile'; input.setAttribute('aria-label', 'Adresszeile'); input.addEventListener('input', changed); const del = document.createElement('button'); del.type = 'button'; del.textContent = 'Entfernen'; del.setAttribute('aria-label', 'Adresszeile entfernen'); del.addEventListener('click', () => { if (addresses.children.length === 1) input.value = ''; else row.remove(); changed() }); row.append(input, del); addresses.append(row) }) }
+      function fillForm(g) { loading = true; for (const key of ['title', 'image', 'date', 'location', 'timeDoorsOpen', 'timeStart', 'description', 'link']) form.elements[key].value = g[key] || ''; renderAddress(g.address || ['']); loading = false; renderPreview() }
+      function safeImage() { const name = $('#image').value.trim(); return name ? `images/gigs/${name}` : '' }
+      function renderPreview() { const g = data.gigs[current] || getFormGig(); preview.replaceChildren(); const card = document.createElement('article'); card.className = 'gig'; const title = document.createElement('h2'); title.className = 'title'; title.textContent = g.title || 'Titel der Veranstaltung'; card.append(title); if (g.image) { const img = document.createElement('img'); img.className = 'image'; img.src = `images/gigs/${g.image}`; img.alt = g.title || ''; img.onerror = () => { img.alt = 'Bild nicht gefunden: ' + g.image; img.style.display = 'none' }; card.prepend(img) } const loc = document.createElement('p'); loc.className = 'location'; loc.textContent = g.location || 'Veranstaltungsort'; card.append(loc); if (g.address?.some(x => x.trim())) { const addr = document.createElement('p'); addr.className = 'address'; g.address.filter(x => x.trim()).forEach((line, i) => { if (i) addr.append(document.createElement('br')); const span = document.createElement('span'); span.className = 'address-line'; span.textContent = line; addr.append(span) }); card.append(addr) } const date = document.createElement('p'); date.className = 'date'; if (g.date) { const d = new Date(g.date + 'T00:00:00'); date.textContent = Number.isNaN(d.getTime()) ? g.date : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) } else date.textContent = 'Datum'; card.append(date); const time = document.createElement('p'); time.className = 'time'; time.append(document.createTextNode('Doors open: ' + (g.timeDoorsOpen || '--:--')), document.createElement('br'), document.createTextNode('Start: ' + (g.timeStart || '--:--'))); card.append(time); if (g.description) { const desc = document.createElement('p'); desc.className = 'description'; desc.textContent = g.description; card.append(desc) } if (g.link) { const a = document.createElement('a'); a.className = 'link'; a.href = g.link; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Weitere Informationen ↗'; card.append(a) } preview.append(card) }
+      function changed() { markDirty(); syncCurrent(); renderSelect(); renderPreview(); setStatus('Ungespeicherte Änderungen.'); }
+      form.addEventListener('input', changed); addresses.addEventListener('input', () => { });
+      $('#addAddress').addEventListener('click', () => { const vals = [...addresses.querySelectorAll('input')].map(x => x.value); vals.push(''); renderAddress(vals); changed() });
+      select.addEventListener('change', () => { syncCurrent(); current = Number(select.value) || 0; fillForm(data.gigs[current] || blank()); renderSelect(); setStatus(dirty ? 'Ungespeicherte Änderungen.' : 'Eintrag ausgewählt.'); });
+      $('#add').addEventListener('click', () => { syncCurrent(); data.gigs.push(blank()); current = data.gigs.length - 1; dirty = true; renderSelect(); fillForm(data.gigs[current]); setStatus('Neue Veranstaltung angelegt. Bitte ausfüllen und speichern.') });
+      $('#duplicate').addEventListener('click', () => { syncCurrent(); const copy = JSON.parse(JSON.stringify(data.gigs[current])); copy.title = (copy.title || 'Veranstaltung') + ' (Kopie)'; data.gigs.splice(current + 1, 0, copy); current++; dirty = true; renderSelect(); fillForm(copy); setStatus('Eintrag dupliziert. Änderungen noch speichern.') });
+      $('#remove').addEventListener('click', () => { if (!data.gigs.length) return; const name = data.gigs[current]?.title || 'diese Veranstaltung'; if (!confirm(`„${name}“ wirklich löschen?`)) return; data.gigs.splice(current, 1); current = Math.max(0, current - 1); dirty = true; renderSelect(); fillForm(data.gigs[current] || blank()); setStatus('Eintrag gelöscht. Änderung noch speichern.') });
+      function validate(d) { if (!d || !Array.isArray(d.gigs)) throw Error('Die Datei muss „export const gigs = […]“ enthalten.'); for (const [i, g] of d.gigs.entries()) { for (const k of ['title', 'image', 'date', 'location', 'timeDoorsOpen', 'timeStart', 'description']) if (typeof g[k] !== 'string') throw Error(`Eintrag ${i + 1}: Feld „${k}“ ist ungültig.`); if (!Array.isArray(g.address) || !g.address.every(x => typeof x === 'string')) throw Error(`Eintrag ${i + 1}: Adresse ist ungültig.`) } }
+      function parseGigModule(text) { const match = text.match(/^\s*export\s+const\s+gigs\s*=\s*(\[[\s\S]*\])\s*;?\s*$/); if (!match) throw Error('Erwartet wird eine Datei im Format: export const gigs = [...];'); return { gigs: JSON.parse(match[1]) } }
+      async function loadJsonText(text, handle = null) { const parsed = parseGigModule(text); validate(parsed); data = parsed; data.gigs.forEach(g => { if (!Array.isArray(g.address)) g.address = ['']; if (typeof g.description !== 'string') g.description = '' }); fileHandle = handle; current = Math.min(current, Math.max(0, data.gigs.length - 1)); dirty = false; renderSelect(); fillForm(data.gigs[current] || blank()); setStatus(`${data.gigs.length} Veranstaltung(en) geladen${handle ? ' – Datei ist zum Überschreiben verbunden' : '. Zum Speichern bitte „Datei öffnen“ wählen.'}`) }
+      async function initialLoad() { try { const module = await import('./data/gig_data.js?cache=' + Date.now()); const parsed = { gigs: module.gigs }; validate(parsed); data = parsed; data.gigs.forEach(g => { if (!Array.isArray(g.address)) g.address = ['']; if (typeof g.description !== 'string') g.description = '' }); current = 0; dirty = false; renderSelect(); fillForm(data.gigs[current] || blank()); setStatus(`${data.gigs.length} Veranstaltung(en) aus gig_data.js geladen. Zum Speichern bitte „Datei öffnen“ wählen.`) } catch (e) { data = { gigs: [blank()] }; current = 0; renderSelect(); fillForm(data.gigs[0]); setStatus('Datei nicht geladen. Prüfe, ob Live Server läuft und data/gig_data.js mit „export const gigs = […]“ existiert. ' + e.message, true) } }
+      $('#openFile').addEventListener('click', async () => { try { if (!window.showOpenFilePicker) throw Error('Direktes Speichern wird von diesem Browser nicht unterstützt. Bitte Chrome oder Edge verwenden.'); const [handle] = await showOpenFilePicker({ multiple: false, types: [{ description: 'Gig-Daten (JavaScript)', accept: { 'text/javascript': ['.js'] } }] }); await loadJsonText(await (await handle.getFile()).text(), handle) } catch (e) { if (e.name !== 'AbortError') setStatus('Datei konnte nicht geöffnet werden: ' + e.message, true) } });
+      $('#save').addEventListener('click', async () => { try { syncCurrent(); validate(data); if (!fileHandle) { if (!window.showSaveFilePicker) throw Error('Bitte Chrome oder Edge verwenden und zuerst „Datei öffnen“ wählen.'); fileHandle = await showSaveFilePicker({ suggestedName: 'gig_data.js', types: [{ description: 'JavaScript-Datei', accept: { 'text/javascript': ['.js'] } }] }) } if (fileHandle.queryPermission && await fileHandle.queryPermission({ mode: 'readwrite' }) !== 'granted') { if (await fileHandle.requestPermission({ mode: 'readwrite' }) !== 'granted') throw Error('Schreibberechtigung wurde nicht erteilt.') } const writable = await fileHandle.createWritable(); await writable.write('export const gigs = ' + JSON.stringify(data.gigs, null, 2) + ';\n'); await writable.close(); dirty = false; setStatus(`Erfolgreich gespeichert: ${fileHandle.name}`) } catch (e) { if (e.name !== 'AbortError') setStatus('Speichern fehlgeschlagen: ' + e.message, true) } });
+      initialLoad();
+    })();
+  </script>
+</body>
+
+</html>
