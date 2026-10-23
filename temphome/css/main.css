@@ -16,7 +16,7 @@
 
 :root {
   --color-text: 206 191 158;
-  --color-background: 82, 63, 34;
+  --color-background: 76, 64, 45;
 }
 
 html {
@@ -26,6 +26,8 @@ html {
 body {
   font-family: "IM Fell English", serif;
   background-color: black;
+  position: relative;
+  z-index: -2;
 }
 
 a {
@@ -99,15 +101,18 @@ details[open] {
   min-height: 100dvh;
   position: sticky;
   top: 4rem;
+  z-index: -1;
 }
 
 .mainImageContainer {
-  width: min(960px, 98dvw);
+  width: min(1280px, 98vw, calc(92dvh * 2560 / 2048));
+  max-height: 92dvh;
+  aspect-ratio: 2560 / 2048;
+  height: auto;
   background-image: url("../images/home-04-26.webp");
   background-size: cover;
   background-position: center;
   margin: 4rem auto calc(clamp(5rem, 1.571rem + 10.71vw, 8rem) * -1) auto;
-  aspect-ratio: 2560 / 2048;
 }
 
 /* Social Media Links */
@@ -118,6 +123,8 @@ details[open] {
   margin: 2rem auto;
   margin-bottom: 8rem;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .btn {

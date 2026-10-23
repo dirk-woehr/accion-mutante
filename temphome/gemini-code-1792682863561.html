@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torn Paper with Shadow</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+
+    /* 1. SEKTION (HERO / HEADER) */
+    .hero {
+      height: 60vh;
+      background: #22252a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+    }
+
+    /* DER SCHATTEN:
+       Ein Pseudo-Element am untersten Rand der ERSTEN Sektion.
+       Es nutzt die SVG-Maske als eigene Form und wirft per drop-shadow den Schatten nach unten.
+    */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: calc(var(--mask-height, 128px) * -1); /* Schiebt das Element exakt in die Lücke */
+      left: 0;
+      width: 100%;
+      height: var(--mask-height, 128px);
+      background: #22252a; /* Selbe Farbe wie Hero */
+      
+      /* Maske auf die Form der Fransen zuschneiden */
+      -webkit-mask-image: var(--svg-mask);
+      mask-image: var(--svg-mask);
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      
+      /* Der Schatten folgt exakt der Fransenform */
+      filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.6));
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* 2. SEKTION (#gigs) */
+    #gigs {
+      position: relative;
+      z-index: 2;
+      background-color: #e5e2d9; /* Helleres Papier */
+      color: #222;
+      min-height: 100vh;
+      padding: 4rem 2rem;
+
+      /* Die Maske von vorhin mit der 2px Überlappung */
+      -webkit-mask-image: var(--svg-mask), linear-gradient(black, black);
+      mask-image: var(--svg-mask), linear-gradient(black, black);
+
+      -webkit-mask-size: 100% var(--mask-height, 128px), 100% calc(100% - var(--mask-height, 128px) + 2px);
+      mask-size: 100% var(--mask-height, 128px), 100% calc(100% - var(--mask-height, 128px) + 2px);
+
+      -webkit-mask-position: top left, bottom left;
+      mask-position: top left, bottom left;
+
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <h1>Hero Sektion</h1>
+  </section>
+
+  <section id="gigs">
+    <h2>Gigs Sektion (mit ausgefranstem Rand & Schatten)</h2>
+    <p>Hier steht der Inhalt der zweiten Sektion...</p>
+  </section>
+
+  <script>
+    function generateTornPaperMaskSVG() {
+      const windowWidth = window.innerWidth;
+      const maxTornHeight = Math.min(128, Math.max(48, Math.round(windowWidth * 0.08))); 
+      const pointsCount = Math.ceil(windowWidth / 30);
+      let pathD = `M 0 ${maxTornHeight} `;
+
+      for (let i = 0; i <= pointsCount; i++) {
+        const x = (i / pointsCount) * windowWidth;
+        const y = (i === 0 || i === pointsCount) 
+          ? Math.round(maxTornHeight * 0.5) 
+          : Math.floor(Math.random() * (maxTornHeight - 10)) + 10;
+            
+        pathD += `L ${x.toFixed(1)} ${y.toFixed(1)} `;
+      }
+
+      pathD += `L ${windowWidth} ${maxTornHeight + 1} L 0 ${maxTornHeight + 1} Z`;
+
+      const svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${windowWidth} ${maxTornHeight}"><path d="${pathD}" fill="black"/></svg>`;
+      
+      return {
+        url: `url("data:image/svg+xml;utf8,${encodeURIComponent(svgString)}")`,
+        height: `${maxTornHeight}px`
+      };
+    }
+
+    function updateMask() {
+      // WICHTIG: Die CSS-Variablen auf document.documentElement (<html>) setzen,
+      // damit Sektion 1 (.hero::after) UND Sektion 2 (#gigs) Zugriff darauf haben!
+      const maskData = generateTornPaperMaskSVG();
+      document.documentElement.style.setProperty('--svg-mask', maskData.url);
+      document.documentElement.style.setProperty('--mask-height', maskData.height);
+    }
+
+    updateMask();
+    window.addEventListener('resize', updateMask);
+  </script>
+</body>
+</html>

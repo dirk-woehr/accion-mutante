@@ -12,58 +12,73 @@
   justify-content: center;
   gap: 4rem;
   width: 100%;
-  margin-top: 16rem;
   color: rgb(var(--color-text));
   background-color: rgb(var(--color-background));
   position: relative;
   min-height: 100vh;
   box-sizing: content-box;
   padding-bottom: 4rem;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+  padding-top: 12rem;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  /* Kompatibilität für Safari (-webkit-) und moderne Browser */
+  -webkit-mask-image: var(--svg-mask), linear-gradient(black, black);
+  mask-image: var(--svg-mask), linear-gradient(black, black);
 
-    height: 16rem;
+  /* Masken-Ebenen: 1. Das SVG oben, 2. Der solide Block darunter */
+  -webkit-mask-image: var(--svg-mask), linear-gradient(black, black);
+  mask-image: var(--svg-mask), linear-gradient(black, black);
 
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        transparent 25%,
-        rgb(var(--color-background)) 75%,
-        rgb(var(--color-background)) 86%,
-        rgb(var(--color-background)) 92%
-    );
+  /* SVG-Kante hat exakt --mask-height. 
+     Der Gradient deckt den Rest ab + 2px Extra-Höhe für die Überlappung */
+  -webkit-mask-size: 100% var(--mask-height, 128px), 100% calc(100% - var(--mask-height, 128px) + 2px);
+  mask-size: 100% var(--mask-height, 128px), 100% calc(100% - var(--mask-height, 128px) + 2px);
 
-    transform: translateY(-100%);
-    pointer-events: none;
-  }
+  -webkit-mask-position: top left, bottom left;
+  mask-position: top left, bottom left;
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+ 
   .sectionTitle {
     display: block;
     font-size: 3rem;
     text-align: center;
-    text-shadow: 5px 5px 4px #494131;
+    text-shadow: 8px 8px 4px #29241ab0;
     margin: -2rem 0 -1rem 0;
     padding: 0;
     z-index: 2;
     width: 96vw;
+    &:nth-child(n+2) {
+      margin-top: 0;
+    }
   }
+}
+
+#gigsShadow {
+  width: 100%;
+  height: var(--shadow-height);
+  background-image: var(--shadow-svg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  margin-bottom: calc(var(--shadow-height) * -1 + 15px);
 }
   
 .gig {
+  --trasition-time: 0.2s;
   container-type: inline-size;
-  padding: 1rem;
+  padding: 2rem;
   gap: 1rem;
-  border-radius: 6px;
+  border-radius: 1rem;
   background: rgba(34, 23, 44, 0.589);
   border: 1px solid rgba(52, 47, 53, 0.789);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
   display: grid;
   align-content: start;
-  width: calc(100% - 6rem);
+  width: 80dvw;
   position: relative;
+  box-sizing: border-box;
   grid-template-areas:
     "image"
     "title"
@@ -77,17 +92,32 @@
     flex-wrap: wrap;
     flex-direction: column;
     gap: 0.1rem;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
   }
-  transition: transform 0.1s ease;
+  h3 {
+    font-size: 1.5rem;
+  }
+  transition:
+    transform var(--trasition-time) ease,
+    box-shadow var(--trasition-time) ease;
   &:hover {
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
   }
   a.link {
     text-decoration: none;
     position: absolute;
     inset: 0;
+  }
+  &.past {
+  filter: grayscale(100%);
+  transition:
+    opacity var(--trasition-time) ease,
+    transform var(--trasition-time) ease,
+    box-shadow var(--trasition-time) ease;
+  &:hover {
+      opacity: 1;
+    }
   }
 }
 
@@ -140,9 +170,10 @@
 .time {
   grid-area: time;
   font-size: 1rem;
+  font-size: 1.2rem;
   margin: 0;
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 95px 1fr;
   gap: 2px 0.5rem;
   div:nth-child(odd) {
     text-align: right;
@@ -152,7 +183,7 @@
 @media (min-width: 768px) {
   #gigs {
     grid-template-columns: 1fr 1fr;
-    gap: 5vw;
+    gap: 3vw;
   }
   .gig {
     grid-template-columns: 1fr 1fr;
@@ -165,7 +196,10 @@
       "image description";
     grid-template-rows: repeat(5, min-content) 1fr;
     align-content: stretch;
-    width: 40vw;
+    width: 38vw;
+    &.past {
+      opacity: 0.7; 
+    }  
   }  
 }
 
@@ -176,6 +210,10 @@
   }
   .gig {
       align-content: stretch;
-      width: 27vw;
+      width: 25vw;    
   }
+}
+
+.isTouchDevice .gig {
+  opacity: 1;
 }

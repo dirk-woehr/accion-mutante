@@ -70,5 +70,19 @@ export const gigs = [
     "timeDoorsOpen": "TBA",
     "timeStart": "TBA",
     "description": ""
+  },
+  {
+    "title": "Merry Crustmess 2025",
+    "image": "crustmess_2025.jpg",
+    "location": "Schwarzer Keiler",
+    "address": [
+      "Fritz-Elsas-Str.60",
+      "70174 Stuttgart",
+      "Germany"
+    ],
+    "date": "2025-12-23",
+    "timeDoorsOpen": "19:00",
+    "timeStart": "20:00",
+    "description": ""
   }
 ];
